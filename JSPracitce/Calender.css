@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,700;1,400;1,600&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: 'Open Sans', sans-serif;
+}
+body{
+    background: rgb(255, 252, 69);
+}
+.Calender{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(45deg,rgba(66, 66, 66, 0.63), rgba(161, 161, 161, 0.377),rgba(0, 0, 0, 0.705)) ;
+    padding: 3%;
+    box-sizing: border-box;
+    border-radius: 15px;
+    box-shadow: 0 0 10px 5px rgba(117, 116, 36, 0.719);
+    height: 100%;
+}
+.Calender h3{
+    font-size: 30px;
+    color: rgb(112, 70, 14);
+    margin: 7% 0;
+}
+.dateList{
+    display: flex;
+    flex-wrap: wrap;
+    width: 700px;
+}
+.dateList>.date{
+    width: 100px;
+    height: 70px;
+    text-align: center;
+    box-sizing: border-box;
+    background-color: #5a5a5a44;
+    line-height: 2.9;
+    color: #fff;
+    font-size: 25px;
+    -webkit-user-select: none;   /* for Chrome */
+    -moz-user-select: none;  /* for Firefox */
+}
+.dateList>.fadout{
+    color: rgba(255, 255, 255, 0.377);
+}
+.dateList>.date:hover{
+    border: 3px solid rgb(75, 75, 75);
+    animation: wordanimate .5s linear;
+}
+.btn{
+    width: 10%;
+    position: absolute;
+    top: 16%;
+    right: 13%;
+    text-align: center;
+    transform: scale(2.3);
+    cursor: pointer;
+}
+.prevbtn{
+    box-sizing: border-box;
+    padding: 0 10%;
+}
+@keyframes wordanimate{
+    0%{
+        transform: rotate(90deg);
+    }
+    50%{
+        transform: rotate(180deg);
+    }
+    75%{
+        transform: rotate(270deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSAnimationPractice</title>
+    <style>
+        .content{
+            background-color: rgb(137, 248, 252);
+        }
+        .title{
+            height: 100vh;
+            color: rgb(12, 3, 61);
+            font-size: 80px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .title span{
+            cursor:grab;
+            transition: .5s;
+            letter-spacing: 10px;
+        }
+        .title>span:hover{
+            transform: scale(1.4) skew(5deg) translateY(15px);
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="content"><div class="title">預設:我的小練習</div></div>
+     <!-- src="1.js" -->
+    <script src="map.practice.js"></script>
+
+
+
+</body>
+</html>
