@@ -1,0 +1,48 @@
+*{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+body{
+  background: #262626;
+  overflow: hidden;
+}
+.SliderContainer{
+  width: 80%;
+  height: 80vh;
+  margin: 4rem auto 0;
+  position: relative;
+  border: 2px solid #000;
+  overflow: hidden;
+}
+.SliderArea,.Slide img{
+  width: 100%;
+  height: 100%;
+}
+.SliderArea{
+  margin: auto;
+  position: relative;
+}
+.Sliderimg{
+  width: 100%;
+  display: flex;
+}
+.Slide img{
+  position: absolute;
+  left: 0;
+  object-fit: cover;
+}
+.fa-chevron-left,.fa-chevron-right{
+  position: absolute;
+  top: 50%;
+  transform: scale(2.5);
+  color: #fff;
+  opacity: 0.3;
+  cursor: pointer;
+}
+.fa-chevron-left{
+  left: 3%;
+}
+.fa-chevron-right{
+  right: 3%;
+}
