@@ -1,0 +1,161 @@
+*,*::after,*::before{
+    box-sizing: border-box;
+}
+
+:root{
+    --cell-size:100px;
+    --mark-size:calc(var(--cell-size) * .9);
+}
+
+body{
+    margin: 0;
+}
+
+.board{
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-template-columns: repeat(3 , auto);
+    justify-items: center;
+    align-items: center;
+}
+
+.cell{
+    width: var(--cell-size);
+    height: var(--cell-size);
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor:pointer
+}
+
+.cell:first-child,
+.cell:nth-child(2),
+.cell:nth-child(3){
+    border-top: none;
+}
+
+.cell:nth-child(3n+1){
+    border-left: none;
+}
+
+.cell:nth-child(3n){
+    border-right: none;
+}
+
+.cell:last-child,
+.cell:nth-last-child(2),
+.cell:nth-last-child(3){
+    border-bottom: none;
+}
+
+.cell.x,
+.cell.circle{
+    cursor:not-allowed;
+}
+
+.cell.x::before,
+.cell.x::after{
+    background-color: black;
+}
+
+.board.x .cell:not(.x):not(.circle):hover::before,
+.board.x .cell:not(.x):not(.circle):hover::after{
+    background-color: lightgray;
+}
+
+.cell.x::before,
+.cell.x::after,
+.board.x .cell:not(.x):not(.circle):hover::before,
+.board.x .cell:not(.x):not(.circle):hover::after{
+    content:'';
+    width: calc(var(--mark-size) * .15);
+    height: calc(var(--mark-size));
+    position: absolute;
+}
+/* 上面計算完畫面卻沒有改變的話，可能代表上方.cell沒有設定顯示方式，因此計算出來的結果會不知道放哪，
+解決辦法：將.cell 設定display:flex
+並設定水平、垂直置中 */
+
+.cell.x::before,
+.board.x .cell:not(.x):not(.circle):hover::before{
+    transform: rotate(45deg);
+}
+
+.cell.x::after,
+.board.x .cell:not(.x):not(.circle):hover::after{
+    transform: rotate(-45deg);
+}
+
+.cell.circle::before{
+    background-color: black;
+}
+/* 這個和上方第62行開始程式一樣，可以擺在一起。
+主要目的都是把before and after 兩個合併所製作出來的圖案顏色抽出，另外放在lightgray這段程式碼上方，以免:hover過後沒有變成淺灰色的圓圈或叉叉 */
+
+
+.board.circle .cell:not(.x):not(.circle):hover::before,
+.board.circle .cell:not(.x):not(.circle):hover::after{
+    background-color: lightgray;
+}
+/* 同上，這個和上方第67行開始程式一樣，可以擺在一起。 */
+
+.cell.circle::before,
+.cell.circle::after,
+.board.circle .cell:not(.x):not(.circle):hover::before,
+.board.circle .cell:not(.x):not(.circle):hover::after{
+    content:'';
+    border-radius: 50%;
+    position: absolute;
+}
+
+.cell.circle::before,
+.board.circle .cell:not(.x):not(.circle):hover::before{
+    width: var(--mark-size);
+    height: var(--mark-size);
+}
+.cell.circle::after,
+.board.circle .cell:not(.x):not(.circle):hover::after{
+    width: calc(var(--mark-size)*.7);
+    height:calc(var(--mark-size)*.7);
+    background-color: white;
+}
+
+.winning-message{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,.9);
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 5rem;
+    flex-direction: column;
+}
+
+.winning-message button{
+    color: #000;
+    background-color: #fff;
+    border:1px solid #000 ;
+    font-size: 3rem;
+    padding: 0.25em -0.5em;
+    cursor: pointer;
+}
+
+.winning-message button:hover{
+    color: #fff;
+    background-color: #000;
+    border-color: #fff ;
+}
+
+.winning-message.show{
+    display: flex;
+}
+/*先將winning-message隱藏，利用JS控制(是否加入show這個CSS名稱)，加入後則套用display:flex; 取代掉 前面的 display:none */
