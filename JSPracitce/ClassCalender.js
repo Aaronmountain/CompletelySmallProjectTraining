@@ -104,7 +104,5 @@ class Calender
         this.state.current.setMonth(this.state.current.getMonth() + 1);
         this.render() ;
     }
-
 }
 let cal1 = new Calender(document.getElementById('Calender'));
-let cal2 = new Calender(document.getElementById('Calender-2'));

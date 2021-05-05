@@ -8,6 +8,7 @@
 }
 body{
     background: rgb(255, 252, 69);
+    overflow: hidden;
 }
 .Calender{
     position: absolute;
@@ -24,7 +25,7 @@ body{
 .Calender h3{
     font-size: 30px;
     color: rgb(112, 70, 14);
-    margin: 7% 0;
+    margin: 4% 0;
 }
 .dateList{
     display: flex;
@@ -53,7 +54,7 @@ body{
 .btn{
     width: 10%;
     position: absolute;
-    top: 16%;
+    top: 10%;
     right: 13%;
     text-align: center;
     transform: scale(2.3);
