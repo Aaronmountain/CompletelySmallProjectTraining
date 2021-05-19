@@ -1,7 +1,7 @@
 const apisrc = "https://api.unsplash.com/photos/?client_id=mWhpC1jD6hjOr21SlfpX8e2IDOxHk5uwE3PcunygDFM&per_page=30";
 const SliderContainer = document.querySelector('.SliderContainer');
 const Sliderimg = SliderContainer.querySelector('.Sliderimg'); 
-const PrevtBtn = SliderContainer.querySelector('.fa-chevron-left');
+const PrevBtn = SliderContainer.querySelector('.fa-chevron-left');
 const NextBtn = SliderContainer.querySelector('.fa-chevron-right');
 
 window.addEventListener("DOMContentLoaded", () =>
@@ -61,7 +61,7 @@ window.addEventListener("DOMContentLoaded", () =>
 
       /*----- Btn點擊事件 ------ */
       // carouselCounter 計數器，點擊按鈕更動計數器的數字，並呼叫 btnControl 函式
-      PrevtBtn.addEventListener('click', () => 
+      PrevBtn.addEventListener('click', () => 
       {
         carouselCounter++;
         btnControl();
