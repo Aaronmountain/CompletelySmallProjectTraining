@@ -3,7 +3,7 @@ form.addEventListener('submit', formSearch)
 
 function formSearch(e) {
   e.preventDefault();
-  const API_KEY = 'AIzaSyD4slm4yGKn4zJbc0r-zEAAGSAazSKveOQ';
+  const API_KEY = 'Your api key';
 
   const search = document.getElementById('search').value;
 
