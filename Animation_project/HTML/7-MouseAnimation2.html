@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/7-MouseAnimation2.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="cursor"></div>
+    <header>
+      <h1>Aaron</h1>
+      <nav>
+        <ul>
+          <li>Home</li>
+          <li>Project</li>
+          <li>contact</li>
+        </ul>
+      </nav>
+    </header>
+
+    <script>
+      const cursor = document.querySelector('.cursor');
+      const headerLinks = document.querySelectorAll('nav li');
+
+      window.addEventListener('mousemove', (e) => {
+        cursor.style.top = `${e.pageY}px`;
+        cursor.style.left = `${e.pageX}px`;
+      });
+
+      headerLinks.forEach((link) => {
+        link.addEventListener('mouseover', () => {
+          cursor.classList.add('mouse-circle');
+          link.classList.add('header-links');
+        });
+        link.addEventListener('mouseleave', () => {
+          cursor.classList.remove('mouse-circle');
+          link.classList.remove('header-links');
+        });
+      });
+    </script>
+  </body>
+</html>

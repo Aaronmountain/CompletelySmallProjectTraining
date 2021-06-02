@@ -1,0 +1,127 @@
+*,
+*::after,
+*::backdrop {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  box-sizing: border-box;
+}
+:root {
+  --category-text-color: #8b8b8b;
+  --subinfo-color: #404040;
+}
+body {
+  overflow-x: hidden;
+  font-family: sans-serif;
+}
+header {
+  height: 30vh;
+  display: flex;
+  align-items: center;
+  margin: 3% 0 5% 0;
+  justify-content: flex-end;
+}
+header .logo {
+  text-align: center;
+  margin-bottom: 1%;
+}
+header .logo img {
+  width: 10rem;
+}
+header .middle {
+  width: 100%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+header .category {
+  display: flex;
+  justify-content: center;
+}
+header .category .info {
+  padding: 0 1%;
+  color: var(--category-text-color);
+  font-size: 0.7rem;
+  position: relative;
+}
+header .category .subinfo {
+  color: var(--subinfo-color);
+  display: flex;
+  justify-content: center;
+  border: 1px solid var(--subinfo-color);
+  padding: 0.5rem;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  visibility: hidden;
+}
+header .subinfo p {
+  padding: 0 0.5rem;
+  cursor: pointer;
+}
+header .category h3 {
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+
+header .right {
+  position: absolute;
+  right: 5%;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+}
+header .right input {
+  border: none;
+  outline: none;
+  border-bottom: 3px solid #ccc;
+  padding: 0.3rem;
+}
+header .right input::placeholder {
+  font-size: 0.6rem;
+}
+header .right input:focus {
+  border: 1.5px solid #000;
+  border-radius: 5px;
+}
+header .right span {
+  transform: scale(1.8);
+  color: rgb(136, 136, 136);
+  cursor: pointer;
+  margin: 0 3%;
+}
+header .right span:nth-child(n + 2) {
+  padding: 0 2%;
+}
+
+.dragslider {
+  height: 500px;
+  object-fit: cover;
+  margin-bottom: 5%;
+  cursor: grab;
+}
+.sliderWrap {
+  width: 80%;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  transition: 0.5s ease-in;
+}
+.sliderWrap img {
+  width: 100%;
+  margin-right: 30%;
+}
+.dragslider .grabbing {
+  cursor: grabbing;
+}
+
+@media screen and (max-width: 898px) {
+  header {
+    height: 30vh;
+    margin-bottom: 12%;
+  }
+  header .right {
+    display: none;
+  }
+}

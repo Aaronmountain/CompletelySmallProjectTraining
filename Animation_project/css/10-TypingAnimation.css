@@ -1,0 +1,91 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  box-sizing: border-box;
+}
+
+.container {
+  height: 100vh;
+  background: url('https://images.unsplash.com/photo-1616887321949-e0f41fb729e1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80');
+  background-size: cover;
+  background-position: center;
+}
+.text {
+  position: relative;
+  top: 40%;
+  left: 5%;
+  width: 50%;
+  word-break: break-all;
+}
+.text h1:nth-child(1) {
+  color: #574842;
+  text-shadow: 5px 5px 20px #d8bcb2;
+}
+.text .typingText {
+  display: inline-block;
+  position: relative;
+  color: #ffffff;
+  text-transform: uppercase;
+  position: relative;
+}
+.text .typingText::after {
+  content: '';
+  position: absolute;
+  top: 5%;
+  right: -5%;
+  height: 90%;
+  border-right: 2px solid rgb(255, 255, 255);
+  animation: typingflash 0.5s infinite;
+}
+
+@keyframes typingflash {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.usersInput {
+  position: absolute;
+  bottom: 30%;
+  right: 10%;
+  border: none;
+  outline: none;
+  width: 9rem;
+  background-color: transparent;
+  border-bottom: 2px solid #f7c049;
+  padding: 5px 0 5px 5px;
+  color: brown;
+}
+.usersInput::placeholder {
+  color: rgb(88, 88, 88);
+  font-size: 0.8rem;
+}
+.usersInput:focus::placeholder {
+  color: #f7c049;
+}
+
+@media screen and (max-width: 768px) {
+  .text {
+    top: 10%;
+    left: 0;
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .text h1:nth-child(1) {
+    font-size: 1.4rem;
+  }
+  .usersInput {
+    right: 50%;
+    transform: translateX(50%);
+    width: 70%;
+    padding: 5px 0 5px 15px;
+  }
+  .usersInput::placeholder {
+    font-size: 1rem;
+  }
+}

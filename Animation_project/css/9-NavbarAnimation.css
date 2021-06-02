@@ -1,0 +1,108 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: monospace;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10%;
+  background-color: rgb(111, 45, 233);
+  color: white;
+  height: 10vh;
+}
+header .logo h1 {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+header ul {
+  display: flex;
+  align-items: center;
+}
+header ul li {
+  padding: 0 5%;
+  cursor: pointer;
+  transition: opacity 0.5s ease-in-out;
+}
+header ul li:nth-child(1) {
+  transition-delay: 0.3s;
+}
+header ul li:nth-child(2) {
+  transition-delay: 0.6s;
+}
+header ul li:nth-child(3) {
+  transition-delay: 0.9s;
+}
+header ul li:hover {
+  color: aqua;
+  border-bottom-color: aqua;
+}
+
+header .menu {
+  position: relative;
+  margin: auto 0;
+  display: none;
+  cursor: pointer;
+}
+header .link {
+  width: 30px;
+  height: 3px;
+  background-color: rgb(54, 212, 160);
+  margin: 5px 0;
+  position: relative;
+  transition: 0.3s ease-in-out;
+}
+.linkClick1 {
+  transform: rotate(45deg);
+  top: 4px;
+}
+.linkClick2 {
+  display: none;
+}
+.linkClick3 {
+  transform: rotate(-45deg);
+  top: -4px;
+}
+
+.nav-show {
+  opacity: 1;
+  pointer-events: all;
+  clip-path: circle(100px at 150% -10%);
+  -webkit-clip-path: circle(1500px at 150% -10%);
+}
+
+.li-fade {
+  opacity: 1;
+}
+
+@media screen and (max-width: 768px) {
+  header .menu {
+    display: block;
+  }
+  header ul {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    flex-direction: column;
+    background-color: rgb(111, 45, 233);
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    clip-path: circle(100px at 100% -10%);
+    -webkit-clip-path: circle(100px at 100% -10%);
+    transition: 1s ease-in-out;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  header ul li {
+    margin: 10% 0;
+    border-bottom: 1px solid #ffffff;
+    opacity: 0;
+  }
+}

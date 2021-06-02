@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NavbarAnimation</title>
+    <link rel="stylesheet" href="../css/9-NavbarAnimation.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <h1>The Nav</h1>
+      </div>
+      <ul>
+        <li><a href="#"></a>home</li>
+        <li><a href="#"></a>About</li>
+        <li><a href="#"></a>Contact</li>
+      </ul>
+      <div class="menu">
+        <div class="link"></div>
+        <div class="link"></div>
+        <div class="link"></div>
+      </div>
+    </header>
+
+    <script>
+      const menu = document.querySelector('.menu');
+      const menuLinks = document.querySelectorAll('.menu div');
+      const navUl = document.querySelector('header ul');
+      const navUlLi = document.querySelectorAll('header ul li');
+
+      menu.addEventListener('click', () => {
+        navUl.classList.toggle('nav-show');
+        navUlLi.forEach((li) => {
+          li.classList.toggle('li-fade');
+        });
+
+        if (navUl.classList.length !== 0) {
+          menuLinks.forEach((link, index) => {
+            menuLinks[index].classList.add(`linkClick${index + 1}`);
+          });
+        } else {
+          menuLinks.forEach((link, index) => {
+            menuLinks[index].classList.remove(`linkClick${index + 1}`);
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

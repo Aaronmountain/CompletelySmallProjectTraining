@@ -1,0 +1,61 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  box-sizing: border-box;
+}
+:root {
+  --text-color: antiquewhite;
+  --viewport-height: 100vh;
+}
+body {
+  font-family: sans-serif;
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+header,
+.Land {
+  z-index: -1;
+}
+header,
+section {
+  height: var(--viewport-height);
+  position: relative;
+}
+img {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: top top;
+  background-repeat: no-repeat;
+}
+header img,
+.Land img {
+  background-attachment: fixed;
+}
+
+header .text,
+section h2 {
+  position: absolute;
+  top: 5%;
+  width: 100%;
+  text-align: center;
+}
+header .text h1 {
+  color: var(--text-color);
+  font-size: 3rem;
+  letter-spacing: 1.5rem;
+  margin-bottom: 1rem;
+}
+header .text p {
+  color: var(--text-color);
+  font-size: 1.6rem;
+}
+
+section h2 {
+  font-size: 1.4rem;
+  top: 10%;
+  color: var(--text-color);
+  letter-spacing: 1rem;
+}

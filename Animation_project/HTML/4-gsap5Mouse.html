@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/4-gsap5.css" />
+    <title>GsapMouseAnimation</title>
+  </head>
+  <body>
+    <div class="circle"></div>
+    <div class="cursor"></div>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"
+      integrity="sha512-cdV6j5t5o24hkSciVrb8Ki6FveC2SgwGfLE31+ZQRHAeSRxYhAQskLkq3dLm8ZcWe1N3vBOEYmmbhzf7NTtFFQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script>
+      const cursor = document.querySelector('.cursor');
+      const circle = document.querySelector('.circle');
+
+      window.addEventListener('mousemove', (e) => {
+        gsap.to(cursor, { duration: 0.2, x: e.clientX, y: e.clientY });
+        gsap.to(circle, { duration: 0.8, x: e.clientX, y: e.clientY });
+      });
+    </script>
+  </body>
+</html>

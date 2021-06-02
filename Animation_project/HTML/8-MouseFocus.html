@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/8-MouseFocus.css" />
+    <title>MouseFocusAnimation</title>
+  </head>
+  <body>
+    <h1>Hold left click to foucs</h1>
+    <div class="cursor"></div>
+
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        const cursor = document.querySelector('.cursor');
+        const text = document.querySelector('h1');
+
+        let cursorSize = `transparent 160px,rgba(0,0,0,1) 225px`;
+
+        window.addEventListener('mousemove', (e) => updateCursor(e));
+
+        window.addEventListener('mousedown', (e) => {
+          cursorSize = `transparent 160px,rgba(0,0,0,.3) 150px`;
+          text.style.color = 'rgb(6, 220, 248)';
+          updateCursor(e);
+        });
+
+        window.addEventListener('mouseup', (e) => {
+          text.style.color = 'rgb(139, 138, 138)';
+          cursorSize = `transparent 160px,rgba(0,0,0,1) 225px`;
+          updateCursor(e);
+        });
+
+        function updateCursor(e) {
+          cursor.style.background = `
+        radial-gradient(circle at ${(e.pageX / window.innerWidth) * 100}% ${
+            (e.pageY / window.innerHeight) * 100
+          }%, ${cursorSize}
+        `;
+        }
+      });
+    </script>
+  </body>
+</html>

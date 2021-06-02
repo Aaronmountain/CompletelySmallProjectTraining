@@ -1,0 +1,65 @@
+*,*::after,*::before{
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  box-sizing: border-box;
+  font-family: 'Work Sans', sans-serif;
+  text-transform: uppercase;
+}
+
+header{
+  width: 100%;
+}
+.s1,.s2,.s3{ 
+  height: 100vh;
+}
+h1,h2 {
+  font-size: 3rem;
+  text-align: center;
+  position: absolute;
+  top: 3%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+p{
+  line-height: 1.8;
+  color: #8e57b1;
+  font-weight:500;
+}
+
+.s1{
+  background-image: url('../images/gsap4-1.png');
+  background-size: cover;
+  background-position: bottom;
+}
+h1{
+  background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
+}
+h2{
+  background-image: linear-gradient(to top, #5ee7df 0%, #b490ca 100%);
+}
+.s2{
+  position: relative;
+}
+.s2 .description {
+  width: 50%;
+  position: absolute;
+  top: 50%;
+  left: 30%;
+  transform: translate(-50%,-30%);
+}
+.s2 img{
+  width: 50%;
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  transform: translateY(-30%);
+}
+.s3 p{
+  width: 90%;
+  text-align: center;
+  margin: 0 auto;
+}

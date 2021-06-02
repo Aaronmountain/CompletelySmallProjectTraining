@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../JS/fullpage.min.css" />
+    <link rel="stylesheet" href="../css/3-gsap4.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@1,200;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <title>Gsap Practice4</title>
+  </head>
+
+  <body>
+    <div id="Fullpage">
+      <section class="section s1">
+        <h1 class="title">Home Decoration</h1>
+      </section>
+      <section class="section s2">
+        <h2 class="title">Different Style</h2>
+        <div class="description">
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis excepturi eius quos
+            aliquid quod beatae dolor error ipsum pariatur, quidem quam suscipit quaerat dolores
+            repellendus quas quis neque sint exercitationem?
+          </p>
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis excepturi eius quos
+            aliquid.
+          </p>
+        </div>
+        <img src="../images/gsap4-2.png" alt="chair" class="chair" />
+        <img src="../images/gsap4-3.png" alt="chair" class="chair" />
+        <img src="../images/gsap4-4.png" alt="chair" class="chair" />
+      </section>
+      <section class="section s3">
+        <h2 class="title">Connct Us</h2>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae fuga explicabo dolorum sed
+          temporibus dolores omnis excepturi tenetur saepe adipisci incidunt dolorem officiis amet
+          iusto sequi, magnam velit ullam quod?
+        </p>
+      </section>
+    </div>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"
+      integrity="sha512-cdV6j5t5o24hkSciVrb8Ki6FveC2SgwGfLE31+ZQRHAeSRxYhAQskLkq3dLm8ZcWe1N3vBOEYmmbhzf7NTtFFQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script src="../JS/fullpage.min.js"></script>
+
+    <script>
+      new fullpage('#Fullpage', {
+        autoScrolling: true,
+        navigation: true,
+        onLeave: (origin, destination, direction) => {
+          const section = destination.item;
+          const title = section.querySelector('.title');
+          const tl = gsap.timeline({ duration: 0.5, delay: 0.3 });
+
+          tl.fromTo(title, { y: 50, opacity: 0 }, { y: 0, opacity: 1 });
+
+          if (destination.index === 1) {
+            const chairs = gsap.utils.toArray('.chair');
+            const description = section.querySelector('.description');
+
+            tl.fromTo(chairs, { xPercent: 100 }, { xPercent: 0 })
+              .fromTo(description, { opacity: 0 }, { opacity: 1 }, '<-=1')
+              .fromTo(chairs[0], { opacity: 1 }, { opacity: 1 }, '<.3')
+              .fromTo(chairs[1], { opacity: 0 }, { opacity: 1 }, '<.3')
+              .fromTo(chairs[2], { opacity: 0 }, { opacity: 1 }, '<.3');
+          }
+        },
+      });
+    </script>
+  </body>
+</html>

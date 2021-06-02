@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/11-2.5D_Scroll.css" />
+  </head>
+  <body>
+    <header>
+      <div class="text">
+        <h1>Welcome</h1>
+        <p>View Sky Ocean Land</p>
+      </div>
+      <img src="../images/2.5DAnimation-1.jpg" alt="headerCoverPhoto" />
+    </header>
+    <section>
+      <h2>2.5DParallax</h2>
+      <img src="../images/2.5DAnimation-2.jpg" alt="" />
+    </section>
+    <section class="Land">
+      <h2>Amazing</h2>
+      <img src="../images/2.5DAnimation-3.jpg" alt="" />
+    </section>
+
+    <script>
+      // Element Img move speed
+      function parallax(Element, distance, speed) {
+        const HtmlElement = document.querySelector(Element);
+        HtmlElement.style.transform = `translateY(${distance * speed}px)`;
+      }
+
+      // according to scroll distance
+      window.addEventListener('scroll', () => {
+        parallax('header', window.scrollY, 1);
+        parallax('.Land', window.scrollY, 0.5);
+      });
+    </script>
+  </body>
+</html>

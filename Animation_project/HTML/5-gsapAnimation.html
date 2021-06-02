@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/5-gsapAnimation.css" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="links">
+        <div class="link">link 1</div>
+        <div class="link">link 2</div>
+        <div class="link">link 3</div>
+      </div>
+    </header>
+
+    <section>
+      <div class="sidebarleft"></div>
+      <button>Reverse</button>
+      <div class="sidebarright"></div>
+    </section>
+
+    <footer></footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
+
+    <script>
+      const tl = gsap.timeline({ default: { duration: 1 } });
+
+      tl.from('header', { y: '-100%', ease: 'bounce' })
+        .from('.links', { opacity: 0, stagger: 0.5 })
+        .from('.sidebarright', { x: '-100vw', ease: 'power2.in' }, 1)
+        .from('.sidebarleft', { x: '-100%' }, '<.5')
+        .to('footer', { y: 0, ease: 'elastic' })
+        .fromTo(
+          'section button',
+          { opacity: 0, scale: 0, rotation: 720 },
+          { opacity: 1, scale: 2, rotation: 0 }
+        );
+
+      const btn = document.querySelector('section button');
+      btn.addEventListener('click', () => {
+        tl.timeScale(10);
+        tl.reverse();
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Typing Animation</title>
+    <link rel="stylesheet" href="../css/10-TypingAnimation.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="text">
+        <h1>Typing some thing</h1>
+        <br />
+        <h1 class="typingText"></h1>
+      </div>
+      <input class="usersInput" type="text" placeholder="Enter Your One Word" maxlength="14" />
+    </div>
+
+    <script>
+      const h1 = document.querySelector('.typingText');
+      const texts = ['Code', 'HTML', 'CSS', 'JavaScript', 'REACT'];
+      const input = document.querySelector('.usersInput');
+      let count = 0;
+      let letterIndex = 0;
+      let currentText = '';
+      let sliceText = '';
+
+      input.addEventListener('change', enterText);
+      function enterText() {
+        const text = input.value;
+        texts.push(text);
+        input.value = '';
+      }
+
+      (function Typing() {
+        if (count === texts.length) count = 0;
+
+        // 拆解文字
+        currentText = texts[count];
+        sliceText = currentText.slice(0, letterIndex++);
+
+        // 插入文字
+        h1.textContent = sliceText;
+
+        if (sliceText.length === currentText.length) {
+          count++;
+          letterIndex = 0;
+        }
+
+        setTimeout(Typing, 300);
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hover Effect</title>
+    <link rel="stylesheet" href="../css/14-HoverEffect.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="text">
+        <h1>Amazing</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae ipsum exercitationem
+          culpa perferendis eum quibusdam, dolore cumque? Voluptas aliquid quas nostrum hic
+          architecto ullam, doloribus vero, suscipit saepe obcaecati consectetur!
+        </p>
+      </div>
+      <div class="img"></div>
+    </div>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"
+      integrity="sha512-cdV6j5t5o24hkSciVrb8Ki6FveC2SgwGfLE31+ZQRHAeSRxYhAQskLkq3dLm8ZcWe1N3vBOEYmmbhzf7NTtFFQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"
+      integrity="sha512-dLxUelApnYxpLt6K2iomGngnHO83iUvZytA3YjDUCjT0HDOHKXnVYdf3hU4JjM8uEhxf9nD1/ey98U3t2vZ0qQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="../JS/hover.js"></script>
+    <script>
+      const hovereffect = new hoverEffect({
+        parent: document.querySelector('.img'),
+        intensity: 0.3,
+        image1: '../images/14-1.jpg',
+        image2: '../images/14-2.jpg',
+        displacementImage: '../images/hoverEffect/smoke.png',
+        speedOut: 2,
+        speedIn: 2,
+        ease: 'Power2.InOut',
+      });
+
+      const h1 = document.querySelector('.text h1');
+      const p = h1.nextElementSibling;
+      const tl = gsap.timeline({ duration: 1 });
+
+      tl.fromTo(h1, { opacity: 0, y: 50 }, { opacity: 1, y: 0 }, '-=0.9').fromTo(
+        p,
+        { opacity: 0, y: 50 },
+        { opacity: 1, y: 0 }
+      );
+    </script>
+  </body>
+</html>
