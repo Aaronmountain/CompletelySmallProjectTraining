@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RandomBox</title>
+    <link rel="stylesheet" href="../css/17-RandomBox.css" />
+  </head>
+  <body>
+    <div class="container">
+      <button>Generator</button>
+    </div>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"
+      integrity="sha512-cdV6j5t5o24hkSciVrb8Ki6FveC2SgwGfLE31+ZQRHAeSRxYhAQskLkq3dLm8ZcWe1N3vBOEYmmbhzf7NTtFFQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script>
+      // Creat Boxs
+      const container = document.querySelector('.container');
+
+      for (let i = 0; i < 100; i++) {
+        const box = document.createElement('div');
+        box.classList.add('box');
+        container.appendChild(box);
+      }
+
+      // Boxs Animation
+      const btn = document.querySelector('.container button');
+      const box = gsap.utils.toArray('.box');
+      btn.addEventListener('click', creatBox);
+
+      function creatBox() {
+        gsap.to(box, {
+          duration: 0.1,
+          x: 'random(-700, 700)',
+          y: 'random(-700, 700)',
+          scale: 'random(1, 3)',
+        });
+      }
+    </script>
+  </body>
+</html>

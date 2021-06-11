@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>webComponent</title>
+    <style>
+      *,
+      *::after,
+      *::before {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <my-header></my-header>
+    <my-template></my-template>
+
+    <template id="my-template">
+      <style>
+        p {
+          color: white;
+          background-color: #666;
+          padding: 5px;
+        }
+      </style>
+      <p>My template</p>
+    </template>
+
+    <script>
+      // Web Component 。 P.S. my-btn 自定義的標籤名稱，少用大寫
+      class myHeader extends HTMLElement {
+        constructor() {
+          super();
+          this.attachShadow({ mode: 'open' });
+          const header = this.CreatElement('header', null);
+          const btn = this.CreatElement('button', 'Click');
+          const ul = this.CreatElement('ul', null);
+          const li = this.creatLi(3, ['Home', 'About', 'Contact']);
+          const logo = this.CreatElement('div', 'LOGO');
+          ul.innerHTML = li;
+
+          header.append(logo, ul, btn);
+
+          const link = document.createElement('link');
+          link.setAttribute('rel', 'stylesheet');
+          link.setAttribute('href', 'practice-1.css');
+
+          this.shadowRoot.append(link, header);
+        }
+        creatLi = (number, text) => {
+          let li = '';
+          for (let i = 0; i < number; i++) {
+            li += `<li>${text[i]}</li>`;
+          }
+          return li;
+        };
+        CreatElement = (Element, text) => {
+          let el = document.createElement(Element);
+          if (text != null) el.textContent = text;
+          return el;
+        };
+      }
+      customElements.define('my-header', myHeader);
+
+      // Template Web Component
+      class myTemplate extends HTMLElement {
+        constructor() {
+          super();
+          let template = document.getElementById('my-template');
+          let templateContent = template.content;
+
+          const shadowRoot = this.attachShadow({ mode: 'open' }).appendChild(
+            templateContent.cloneNode(true)
+          );
+        }
+      }
+      customElements.define('my-template', myTemplate);
+    </script>
+  </body>
+</html>

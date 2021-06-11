@@ -1,0 +1,85 @@
+*,
+*::after,
+*::backdrop {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  box-sizing: border-box;
+}
+:root {
+}
+body {
+  font-family: sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.8rem;
+  color: #262626;
+  scroll-behavior: smooth;
+}
+
+.First,
+.Second,
+.Third {
+  position: relative;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* fixed = parallax , scroll = normal */
+  background-attachment: fixed;
+  opacity: 0.8;
+}
+.First {
+  background-image: url('../images/16-1.jpg');
+  min-height: 100vh;
+}
+.Second {
+  background-image: url('../images/16-2.jpg');
+  min-height: 400px;
+}
+.Third {
+  background-image: url('../images/16-3.jpg');
+  min-height: 400px;
+}
+.parallaxWrap {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 2.5rem;
+  letter-spacing: 0.5rem;
+}
+.parallaxWrap .text {
+  background-color: #616161;
+  color: #f4f4f4;
+  padding: 1rem 2rem;
+}
+.parallaxWrap .text.trans {
+  background: transparent;
+}
+
+.section {
+  text-align: center;
+  padding: 1rem;
+}
+.section h2 {
+  padding-bottom: 1rem;
+}
+.section.section-Light {
+  background: #f4f4f4;
+}
+.section.section-Dark {
+  background: #262626;
+  color: #f4f4f4;
+}
+@media screen and (max-width: 568px) {
+  .First,
+  .Second,
+  .Third {
+    background-attachment: scroll;
+  }
+  .parallaxWrap .text {
+    font-size: 1rem;
+  }
+}

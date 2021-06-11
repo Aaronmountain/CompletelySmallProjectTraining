@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>glass component</title>
+    <link rel="stylesheet" href="../../reset.css" />
+  </head>
+  <body>
+    <!-- 原生HTML -->
+    <!-- <div class="container">
+      <section class="glass">
+        <div class="text">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae, illum. Id beatae
+          laboriosam totam unde? Sint nemo eos fugit amet voluptas nulla, facere accusamus quidem
+          mollitia expedita, error ipsum a! laboriosam totam unde? Sint nemo eos fugit amet voluptas
+          nulla, facere accusamus quidem mollitia expedita, error ipsum a! mollitia expedita, error
+          ipsum a! laboriosam totam unde? Sint nemo eos fugit amet voluptas nulla, facere accusamus
+          quidem mollitia expedita, error ipsum a! mollitia expedita, error ipsum a! laboriosam
+          totam unde? Sint nemo eos fugit amet voluptas nulla, facere accusamus quidem mollitia
+          expedita, error ipsum a! mollitia expedita, error ipsum a! labor
+        </div>
+        <button>More</button>
+      </section>
+    </div> -->
+
+    <!-- 上方原生之 web component -->
+    <my-glasscard class="target" text="React" isChanged="false"></my-glasscard>
+    <my-glasscard class="target" text="React" isChanged="false"></my-glasscard>
+    <my-glasscard class="target" text="React" isChanged="false"></my-glasscard>
+    <my-glasscard class="target" text="React" isChanged="false"></my-glasscard>
+    <my-glasscard class="target" text="React" isChanged="false"></my-glasscard>
+    <my-glasscard class="target" text="React" isChanged="false"></my-glasscard>
+    <my-glasscard class="target" text="React" isChanged="false"></my-glasscard>
+
+    <!-- <my-glasscard></my-glasscard> -->
+
+    <script>
+      const targets = document.querySelectorAll('.target');
+      const loremtext = `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae, illum. Id beatae
+          laboriosam totam unde? Sint nemo eos fugit amet voluptas nulla, facere accusamus quidem
+          mollitia expedita, error ipsum a! laboriosam totam unde? Sint nemo eos fugit amet voluptas
+          nulla, facere accusamus quidem mollitia expedita, error ipsum a! mollitia expedita, error
+          ipsum a! laboriosam totam unde? Sint nemo eos fugit amet voluptas nulla, facere accusamus
+          quidem mollitia expedita, error ipsum a! mollitia expedita, error ipsum a! laboriosam
+          totam unde? Sint nemo eos fugit amet voluptas nulla, facere accusamus quidem mollitia
+          expedita, error ipsum a! mollitia expedita, error ipsum a! labor`;
+      class myGlasscard extends HTMLElement {
+        static get observedAttributes() {
+          return ['text'];
+        }
+
+        constructor() {
+          super();
+          this.attachShadow({ mode: 'open' });
+          // CreatElement function (Element, className, text)
+          const container = this.CreatElement('div', 'container', null);
+          const section = this.CreatElement('section', 'glass', null);
+          const text = this.CreatElement('div', 'text', loremtext);
+          this.btn = this.CreatElement('button', null, 'More');
+          this.btn.setAttribute('onclick', `changeText()`);
+          section.append(text, this.btn);
+          container.appendChild(section);
+
+          const link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.href = 'glassLayout.css';
+
+          this.shadowRoot.append(link, container);
+        }
+        CreatElement = (Element, className, text) => {
+          let el = document.createElement(Element);
+          if (className != null) el.classList.add(className);
+          if (text != null) el.textContent = text;
+          return el;
+        };
+        attributeChangedCallback() {
+          targets[0].getAttribute('isChanged') === 'true'
+            ? (this.btn.textContent = 'REACT')
+            : (this.btn.textContent = 'More');
+        }
+      }
+      customElements.define('my-glasscard', myGlasscard);
+
+      function changeText() {
+        targets.forEach((target) => {
+          target.setAttribute('text', 'REACT');
+        });
+        if (targets[0].getAttribute('isChanged') === 'false') {
+          targets.forEach((target) => {
+            target.setAttribute('isChanged', 'true');
+          });
+          return;
+        }
+        if (targets[0].getAttribute('isChanged') === 'true') {
+          targets.forEach((target) => {
+            target.setAttribute('isChanged', 'false');
+          });
+          return;
+        }
+      }
+    </script>
+  </body>
+</html>

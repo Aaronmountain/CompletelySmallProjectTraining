@@ -1,0 +1,41 @@
+header {
+  padding: 1rem;
+  width: 100%;
+  background-color: aquamarine;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: sans-serif;
+  padding: 2% 5%;
+}
+header div {
+  font-size: 1.5rem;
+  color: #fff;
+}
+ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-left: auto;
+}
+ul li {
+  padding: 0 5%;
+  cursor: pointer;
+  color: rgb(56, 56, 56);
+}
+ul li:hover,
+button:hover {
+  color: #fff;
+  background-color: rgb(8, 56, 58);
+}
+button {
+  padding: 0.5rem 1.2rem;
+  border: 1px solid #000;
+  border-radius: 30px;
+  background: #ccc;
+  color: rgb(56, 56, 56);
+  cursor: crosshair;
+  font-size: 1rem;
+  margin: 0 5%;
+}
