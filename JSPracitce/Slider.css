@@ -1,12 +1,12 @@
-*{
+* {
   margin: 0;
   padding: 0;
   list-style: none;
 }
-body{
+body {
   background: #262626;
 }
-.SliderContainer{
+.SliderContainer {
   width: 80%;
   height: 80vh;
   margin: 4rem auto 0;
@@ -14,20 +14,22 @@ body{
   border: 2px solid rgb(102, 111, 247);
   overflow: hidden;
 }
-.SliderArea,.Slide img{
+.SliderArea,
+.Slide img {
   width: 100%;
   height: 100%;
 }
-.SliderArea{
+.SliderArea {
   margin: auto;
   position: relative;
 }
-.Slide img{
+.Slide img {
   position: absolute;
   left: 0;
   object-fit: cover;
 }
-.fa-chevron-left,.fa-chevron-right{
+.fa-chevron-left,
+.fa-chevron-right {
   position: absolute;
   top: 50%;
   transform: scale(2.5);
@@ -35,9 +37,13 @@ body{
   opacity: 0.3;
   cursor: pointer;
 }
-.fa-chevron-left{
+.fa-chevron-left {
   left: 3%;
 }
-.fa-chevron-right{
+.fa-chevron-right {
   right: 3%;
+}
+
+.imgAnimation {
+  transition: 0.3s ease-in-out;
 }

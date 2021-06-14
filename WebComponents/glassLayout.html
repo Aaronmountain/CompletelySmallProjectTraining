@@ -27,14 +27,6 @@
 
     <!-- 上方原生之 web component -->
     <my-glasscard class="target" text="React" isChanged="false"></my-glasscard>
-    <my-glasscard class="target" text="React" isChanged="false"></my-glasscard>
-    <my-glasscard class="target" text="React" isChanged="false"></my-glasscard>
-    <my-glasscard class="target" text="React" isChanged="false"></my-glasscard>
-    <my-glasscard class="target" text="React" isChanged="false"></my-glasscard>
-    <my-glasscard class="target" text="React" isChanged="false"></my-glasscard>
-    <my-glasscard class="target" text="React" isChanged="false"></my-glasscard>
-
-    <!-- <my-glasscard></my-glasscard> -->
 
     <script>
       const targets = document.querySelectorAll('.target');
@@ -46,11 +38,11 @@
           quidem mollitia expedita, error ipsum a! mollitia expedita, error ipsum a! laboriosam
           totam unde? Sint nemo eos fugit amet voluptas nulla, facere accusamus quidem mollitia
           expedita, error ipsum a! mollitia expedita, error ipsum a! labor`;
+
       class myGlasscard extends HTMLElement {
         static get observedAttributes() {
           return ['text'];
         }
-
         constructor() {
           super();
           this.attachShadow({ mode: 'open' });
@@ -59,7 +51,7 @@
           const section = this.CreatElement('section', 'glass', null);
           const text = this.CreatElement('div', 'text', loremtext);
           this.btn = this.CreatElement('button', null, 'More');
-          this.btn.setAttribute('onclick', `changeText()`);
+          this.btn.addEventListener('click', this.changeText);
           section.append(text, this.btn);
           container.appendChild(section);
 
@@ -69,37 +61,36 @@
 
           this.shadowRoot.append(link, container);
         }
-        CreatElement = (Element, className, text) => {
+        CreatElement(Element, className, text) {
           let el = document.createElement(Element);
           if (className != null) el.classList.add(className);
           if (text != null) el.textContent = text;
           return el;
-        };
+        }
         attributeChangedCallback() {
           targets[0].getAttribute('isChanged') === 'true'
             ? (this.btn.textContent = 'REACT')
             : (this.btn.textContent = 'More');
         }
+        changeText() {
+          targets.forEach((target) => {
+            target.setAttribute('text', 'REACT');
+          });
+          if (targets[0].getAttribute('isChanged') === 'false') {
+            targets.forEach((target) => {
+              target.setAttribute('isChanged', 'true');
+            });
+            return;
+          }
+          if (targets[0].getAttribute('isChanged') === 'true') {
+            targets.forEach((target) => {
+              target.setAttribute('isChanged', 'false');
+            });
+            return;
+          }
+        }
       }
       customElements.define('my-glasscard', myGlasscard);
-
-      function changeText() {
-        targets.forEach((target) => {
-          target.setAttribute('text', 'REACT');
-        });
-        if (targets[0].getAttribute('isChanged') === 'false') {
-          targets.forEach((target) => {
-            target.setAttribute('isChanged', 'true');
-          });
-          return;
-        }
-        if (targets[0].getAttribute('isChanged') === 'true') {
-          targets.forEach((target) => {
-            target.setAttribute('isChanged', 'false');
-          });
-          return;
-        }
-      }
     </script>
   </body>
 </html>

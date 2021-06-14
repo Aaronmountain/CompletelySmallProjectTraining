@@ -26,8 +26,10 @@ function startGame() {
   //遊戲從圈圈開始
   circleTurns = true;
   cellElements.forEach((cell) => {
-    /*1. 因為重新開始，除了第35行的remove the show css，同時也要把格子內上一場的圈圈叉叉清除。
-        2. 為cellElements中每一個cell移除css中的 x_Class and circle_Class 和 click事件(不再觸發handlClick函式) */
+    /*
+      1. 因為重新開始，除了第35行的remove the show css，同時也要把格子內上一場的圈圈叉叉清除。
+      2. 為cellElements中每一個cell移除css中的 x_Class and circle_Class 和 click事件(不再觸發handlClick函式) 
+    */
     cell.classList.remove(x_Class);
     cell.classList.remove(circle_Class);
     cell.removeEventListener('click', handlClick);
@@ -38,7 +40,7 @@ function startGame() {
   //遊戲一開始就要有 圈 or 叉 的hover圖案
   setBoardHoverClass();
 
-  //因為要開始遊戲，無論是剛開始還是restart，都要移除掉 勝利及restart按鈕的視窗，so remove the show css
+  //因為要開始遊戲，無論是剛開始還是restart，都要移除掉勝利及restart按鈕的視窗，so remove the show css
   winningMessageElements.classList.remove('show');
 }
 
