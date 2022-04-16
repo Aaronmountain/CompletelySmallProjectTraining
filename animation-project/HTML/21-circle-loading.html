@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <title>21-circle-loading</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,400;1,300;1,400&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-family: 'Roboto Condensed', sans-serif;
+    }
+
+    body {
+      background: #262626;
+    }
+
+    .ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #00f7ff;
+      width: 150px;
+      height: 150px;
+      background: transparent;
+      border: 5px solid #3c3c3c;
+      border-radius: 50%;
+      text-align: center;
+      /* 用line-hight 置中 */
+      line-height: 150px;
+      font-size: 20px;
+      letter-spacing: 5px;
+      /* 文字效果 */
+      text-transform: uppercase;
+      text-shadow: 0 0 10px #00f7ff;
+      box-shadow: 0 0 20px 10px rgba(0, 0, 0, .5);
+    }
+
+    .ring::before {
+      content: '';
+      position: absolute;
+      top: -5px;
+      left: -5px;
+      width: 100%;
+      height: 100%;
+      border: 5px solid transparent;
+      border-top: 5px solid #af02ff;
+      border-right: 5px solid #af02ff;
+      border-radius: 50%;
+      animation: animate 2s linear infinite;
+    }
+
+    .ring span {
+      display: block;
+      width: 50%;
+      height: 4px;
+      position: absolute;
+      top: calc(50% - 2px);
+      left: 50%;
+      background: transparent;
+      transform-origin: left;
+      animation: circle 2s linear infinite;
+    }
+
+    /* 小圓圈 */
+    .ring span::before {
+      content: '';
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #af02ff;
+      top: -6px;
+      right: -8px;
+      box-shadow: 0 0 20px 5px #af02ff;
+    }
+
+    /* 配合外圍圓圈轉動 */
+    @keyframes circle {
+      0% {
+        transform: rotate(45deg);
+      }
+
+      100% {
+        transform: rotate(405deg);
+      }
+    }
+
+    /* 外圍繞圈 */
+    @keyframes animate {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <div class="ring">
+    Loading
+    <span></span>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

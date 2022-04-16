@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <title>22-navbar-hover-animation</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,400;1,300;1,400&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-family: 'Roboto Condensed', sans-serif;
+    }
+
+    body {
+      background: #262626;
+    }
+
+    /* animate 1
+      .circle{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .pulse{
+        width: 100px;
+        height: 100px;
+        background: #ff6d4a;
+        border-radius: 50%;
+        color: #fff;
+        animation: animate 3s linear infinite;
+      }
+      @keyframes animate{
+        0%{
+        box-shadow: 0 0 0 0 rgba(255, 109, 74, .7);
+        }
+
+        40%{
+        box-shadow: 0 0 0 50px rgba(255, 109, 74, 0);
+        }
+
+        80%{
+        box-shadow: 0 0 0 50px rgba(255, 109, 74, 0);
+        }
+
+        100%{
+        box-shadow: 0 0 0 50px rgba(255, 109, 74, 0);
+        }
+
+      }
+      .pulse p{
+        text-align: center;
+        font-size: 35px;
+        line-height: 100px;
+        text-transform: uppercase;
+      } */
+
+
+    /* animate 2 */
+    .header {
+      width: 100%;
+    }
+
+    .header ul {
+      margin: 20% auto;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    .header ul li {
+      padding: 10px 2%;
+    }
+
+    .header ul a {
+      color: #fff;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 1.5em;
+      position: relative;
+      padding: 5px;
+    }
+
+    .header ul a:hover {
+      color: #ff0;
+    }
+
+    .header ul li a span:first-child::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 8px;
+      height: 8px;
+      background: transparent;
+      border-top: 2px solid #ff0;
+      border-left: 2px solid #ff0;
+      opacity: 0;
+      transition: .2s;
+    }
+
+    .header ul li a span:last-child::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 8px;
+      height: 8px;
+      background: transparent;
+      border-bottom: 2px solid #ff0;
+      border-left: 2px solid #ff0;
+      opacity: 0;
+      transition: .2s;
+    }
+
+    .header ul li a span:first-child::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 8px;
+      height: 8px;
+      background: transparent;
+      border-right: 2px solid #ff0;
+      border-top: 2px solid #ff0;
+      opacity: 0;
+      transition: .2s;
+    }
+
+    .header ul li a span:last-child::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 8px;
+      height: 8px;
+      background: transparent;
+      border-bottom: 2px solid #ff0;
+      border-right: 2px solid #ff0;
+      opacity: 0;
+      transition: .2s;
+    }
+
+    .header ul a:hover span:first-child::before {
+      top: -10px;
+      left: -10px;
+      opacity: 1;
+    }
+
+    .header ul a:hover span:last-child::before {
+      bottom: -10px;
+      left: -10px;
+      opacity: 1;
+    }
+
+    .header ul a:hover span:first-child::after {
+      right: -10px;
+      top: -10px;
+      opacity: 1;
+    }
+
+    .header ul a:hover span:last-child::after {
+      right: -10px;
+      bottom: -10px;
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+
+
+
+  <!-- animate 1 
+  <div class="circle">
+    <div class="pulse">
+      <p>pulse</p>
+    </div>
+  </div> -->
+
+
+  <!-- animate 2  -->
+  <div class="header">
+    <ul>
+      <li><a href="#">Allocate<span></span><span></span></a></li>
+      <li><a href="#">Convention<span></span><span></span></a></li>
+      <li><a href="#">Conventional<span></span><span></span></a></li>
+      <li><a href="#">Detrimental<span></span><span></span></a></li>
+      <li><a href="#">Fringe<span></span><span></span></a></li>
+    </ul>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <title>24-welcom-land-page</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,400;1,300;1,400&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-family: 'Roboto Condensed', sans-serif;
+    }
+
+    body {
+      background: #f7c00c;
+    }
+
+    .layout {
+      width: 100%;
+    }
+
+    .layout a {
+      text-decoration: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      line-height: 60px;
+      font-size: 58px;
+      letter-spacing: 4px;
+      color: #262626;
+      overflow: hidden;
+      padding: 2%;
+    }
+
+    .layout a span {
+      display: block;
+      background: #262626;
+      transition: .2s;
+    }
+
+    /* 製作出四個線條 */
+    .layout a span:nth-child(1),
+    .layout a span:nth-child(3) {
+      position: absolute;
+      height: 5px;
+      width: 100%;
+    }
+
+    .layout a span:nth-child(2),
+    .layout a span:nth-child(4) {
+      position: absolute;
+      height: 100%;
+      width: 5px;
+    }
+
+    /* 分別控制到外面，a overflow:hidden; ,所以被隱藏了 */
+    .layout a span:nth-child(1) {
+      top: 0;
+      left: -100%;
+      transition-delay: 0s;
+    }
+
+    .layout a span:nth-child(2) {
+      top: -100%;
+      right: 0;
+      transition-delay: .2s;
+    }
+
+    .layout a span:nth-child(3) {
+      bottom: 0;
+      left: 100%;
+      transition-delay: .4s;
+    }
+
+    .layout a span:nth-child(4) {
+      bottom: -100%;
+      left: 0;
+      transition-delay: .6s;
+    }
+
+    /* HOVer 回到0 */
+    .layout a:hover span:nth-child(1) {
+      top: 0;
+      left: 0;
+    }
+
+    .layout a:hover span:nth-child(2) {
+      top: 0;
+      right: 0;
+    }
+
+    .layout a:hover span:nth-child(3) {
+      bottom: 0;
+      left: 0;
+    }
+
+    .layout a:hover span:nth-child(4) {
+      bottom: 0;
+      left: 0;
+    }
+  </style>
+</head>
+
+<body>
+
+
+
+
+
+  <div class="layout">
+    <a href="#">Welcome My Page
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </a>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

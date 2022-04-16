@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <title>18-animation-website</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,400;1,300;1,400&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-family: 'Roboto Condensed', sans-serif;
+    }
+
+    body {
+      overflow: hidden;
+    }
+
+    .banner1,
+    .banner2,
+    .banner3,
+    .banner4 {
+      width: 100%;
+      height: 100vh;
+      position: absolute;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+    }
+
+    .banner1 img {
+      width: 120%;
+      height: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: zoomout 3s linear infinite;
+    }
+
+    /* 一開始將圖片設成120%的目的在這，
+設置動畫，動畫內容只設 100%持續3秒，
+讓寬度變 width: 100%; ，圖片會有內縮的動畫 */
+    @keyframes zoomout {
+      100% {
+        width: 100%;
+      }
+    }
+
+    .text {
+      width: 80%;
+      position: absolute;
+      left: 5%;
+      top: 25%;
+      color: rgb(255, 255, 255);
+      animation: textup 12s linear infinite;
+      transform: translateY(100px);
+    }
+
+    @keyframes textup {
+      10% {
+        transform: translateY(0);
+      }
+
+      100% {
+        transform: translateY(0)
+      }
+    }
+
+    .text1 {
+      animation-delay: 0s;
+    }
+
+    .text2 {
+      animation-delay: 3s;
+    }
+
+    .text3 {
+      animation-delay: 6s;
+    }
+
+    .text4 {
+      animation-delay: 9s;
+    }
+
+
+    .text h1 {
+      margin-bottom: 40px;
+    }
+
+    .text p {
+      font-size: 18px;
+      line-height: 23px;
+      margin-top: 80px;
+    }
+
+    .text span {
+      width: 100px;
+      height: 2px;
+      background: rgba(0, 0, 0, 0.972);
+      position: absolute;
+      left: 0;
+    }
+
+
+    .banner1 {
+      animation: slide1 12s linear infinite;
+    }
+
+    .banner2 {
+      animation: slide2 12s linear infinite;
+    }
+
+    .banner3 {
+      animation: slide3 12s linear infinite;
+    }
+
+    .banner4 {
+      animation: slide4 12s linear infinite;
+    }
+
+    /* 四個動畫可以看作一起，只是內容在不同時間做不同的是，
+而0~25%四個一起的，第一個從顯示到隱藏，其他的從隱藏到隱藏，
+25%~50% 第二章才開始顯示 */
+    @keyframes slide1 {
+      0% {
+        visibility: visible;
+      }
+
+      25% {
+        visibility: hidden;
+      }
+
+      50% {
+        visibility: hidden;
+      }
+
+      75% {
+        visibility: hidden;
+      }
+
+      100% {
+        visibility: visible;
+      }
+    }
+
+    @keyframes slide2 {
+      0% {
+        visibility: hidden;
+      }
+
+      25% {
+        visibility: hidden;
+      }
+
+      50% {
+        visibility: visible;
+      }
+
+      75% {
+        visibility: hidden;
+      }
+
+      100% {
+        visibility: hidden;
+      }
+    }
+
+    @keyframes slide3 {
+      0% {
+        visibility: hidden;
+      }
+
+      25% {
+        visibility: hidden;
+      }
+
+      50% {
+        visibility: hidden;
+      }
+
+      75% {
+        visibility: visible;
+      }
+
+      100% {
+        visibility: hidden;
+      }
+    }
+
+    @keyframes slide4 {
+      0% {
+        visibility: hidden;
+      }
+
+      25% {
+        visibility: hidden;
+      }
+
+      50% {
+        visibility: hidden;
+      }
+
+      75% {
+        visibility: hidden;
+      }
+
+      100% {
+        visibility: visible;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+
+
+  <div class="banner1">
+    <img src="../images/18-1.jpg" alt="">
+    <div class="text text1">
+      <h1>生活終究在前行，黑夜中就會遇見天亮。</h1>
+      <span></span>
+      <p>
+        做個簡單的人，帶著平常心，<br />
+        有快樂、有不滿、有成長也有挫折，對人要真人，對自己也要坦然。<br />
+        謝謝那些來到的，不後悔已經發生的。
+      </p>
+    </div>
+  </div>
+
+  <div class="banner2">
+    <img src="../images/18-2.jpg" alt="">
+    <div class="text text2">
+      <h1>當你明白這個道理，你的人生將開始蛻變：
+      </h1>
+      <span></span>
+      <p>
+        找到自我的最好方法，是在服務他人的過程中放下自我。
+      </p>
+    </div>
+  </div>
+
+  <div class="banner3">
+    <img src="../images/18-3.jpg" alt="">
+    <div class="text text3">
+      <h1>真正快樂的人，是那些已經開始尋求，並知道如何服務他人的人。</h1>
+      <span></span>
+      <p>
+        每個人都可以成為偉大的人，因為每個人都可以為他人服務。
+      </p>
+    </div>
+  </div>
+
+  <div class="banner4">
+    <img src="../images/18-4.jpg" alt="">
+    <div class="text text4">
+      <h1>如果你能幫助他人獲得他所想要的，那你將得到你人生所需的一切。</h1>
+      <span></span>
+      <p>
+        世上有心無力的事情太多了，做人不能把自己活活憋死，那才是真的枉費投胎來世上走一遭。
+      </p>
+    </div>
+  </div>
+
+</body>
+
+</html>

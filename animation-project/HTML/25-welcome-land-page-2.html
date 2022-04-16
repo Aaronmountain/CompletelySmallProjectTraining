@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <title>25-welcom-land-page-2</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,400;1,300;1,400&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-family: 'Roboto Condensed', sans-serif;
+    }
+
+    body {
+      background-color: #f1ff36;
+      height: 100%;
+    }
+
+    .layout {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .layout a {
+      text-decoration: none;
+      position: relative;
+      /* 100%是指父層 .layout的100% ，而.layout沒設寬度故為內容物(字的)長度 */
+      width: 100%;
+      padding: 8%;
+      text-align: center;
+      line-height: 50px;
+      font-size: 58px;
+      display: inline-block;
+      color: #262626;
+    }
+
+    .layout a::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      width: 0;
+      height: 0;
+      border: 10px solid transparent;
+    }
+
+    .layout a:hover::before {
+      animation: borderfirst 1s linear forwards;
+    }
+
+    .layout a::after {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      width: 0;
+      height: 0;
+      border: 10px solid transparent;
+    }
+
+    .layout a:hover::after {
+      animation: bordersecond 1s linear forwards;
+      animation-delay: 1s;
+    }
+
+    @keyframes borderfirst {
+      0% {
+        width: 0;
+        height: 0;
+        border-top-color: #00ffff;
+        border-right-color: transparent;
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+      }
+
+      50% {
+        width: 100%;
+        height: 0;
+        border-top-color: #00ffff;
+        border-right-color: #00ffff;
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+      }
+
+      100% {
+        width: 100%;
+        height: 100%;
+        border-top-color: #00ffff;
+        border-right-color: #00ffff;
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+      }
+
+    }
+
+    /* 邊線，從左上角開始 */
+    @keyframes bordersecond {
+
+      /* 這裡要給左邊的邊線做動畫，故0%和50%都給左邊縣顏色，這樣到50%就會產生 height: 100%;的動畫 */
+      0% {
+        width: 0;
+        height: 0;
+        border-top-color: transparent;
+        border-right-color: transparent;
+        border-bottom-color: transparent;
+        border-left-color: #00ffff;
+      }
+
+      /* 這裡要給底邊的邊線做動畫，故左邊線顏色維持著，50%和100%給底線顏色，這樣到50%就會有一個width: 100%;的動畫 */
+      50% {
+        width: 0;
+        height: 100%;
+        border-top-color: transparent;
+        border-right-color: transparent;
+        border-bottom-color: #00ffff;
+        border-left-color: #00ffff;
+      }
+
+      100% {
+        width: 100%;
+        height: 100%;
+        border-top-color: transparent;
+        border-right-color: transparent;
+        border-bottom-color: #00ffff;
+        border-left-color: #00ffff;
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <div class="layout">
+    <a href="#">Welcome My Page</a>
+  </div>
+
+
+
+
+
+
+
+</body>
+
+</html>

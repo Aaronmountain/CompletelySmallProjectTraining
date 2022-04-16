@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>19-three-types-animation</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,700;1,400;1,600&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    body {
+      background: #262626;
+    }
+
+    .box {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 200px;
+      height: 200px;
+      box-sizing: border-box;
+    }
+
+    .box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-top: 4px solid #58c747;
+      border-bottom: 4px solid #58c747;
+      box-sizing: border-box;
+      transform: scaleX(0);
+      transition: .5s;
+    }
+
+    .box:hover::before {
+      transform: scaleX(1);
+    }
+
+    .box::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-right: 4px solid #58c747;
+      border-left: 4px solid #58c747;
+      box-sizing: border-box;
+      transform: scaleY(0);
+      transition: .5s;
+    }
+
+    .box:hover::after {
+      transform: scaleY(1);
+      transition-delay: .5s;
+    }
+
+    /* ---------- */
+    .box span.border {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: block;
+      background: rgba(0, 0, 0, .1);
+      transform: rotate(45deg);
+      pointer-events: none;
+      box-sizing: border-box;
+    }
+
+    .box span.border::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-top: 4px solid #58c747;
+      border-bottom: 4px solid #58c747;
+      box-sizing: border-box;
+      transform: scaleX(0);
+      transition: .5s;
+    }
+
+    .box:hover span.border::before {
+      transform: scaleX(1);
+      transition-delay: 1s;
+    }
+
+    .box span.border::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-right: 4px solid #58c747;
+      border-left: 4px solid #58c747;
+      box-sizing: border-box;
+      transform: scaleY(0);
+      transition: .5s;
+    }
+
+    .box:hover span.border::after {
+      transform: scaleY(1);
+      transition-delay: 1.5s;
+    }
+
+
+
+    .box h1 {
+      color: #49ccec;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      text-align: center;
+      font-size: 24px;
+      text-transform: uppercase;
+      z-index: 1;
+    }
+
+    .box h1 span {
+      font-size: 36px;
+      display: block;
+      color: #58c747;
+    }
+
+
+    /* ---------- 彩色方框 ---------- */
+    .box1 {
+      width: 400px;
+      height: 400px;
+      position: absolute;
+      top: 3%;
+      left: 3%;
+      border: 4px solid #000;
+      box-sizing: border-box;
+      /* border-image ，在正方形四個邊角顯示小小的漸層色 */
+      border-image: linear-gradient(45deg, #ff0, #f0f, #f00, #0f0);
+      /* border-image-slice: 1; , 四個角的漸層色連成線，變成一個正方形的border */
+      border-image-slice: 1;
+      box-shadow: 0 15px 25px rgba(0, 0, 0, .5);
+    }
+
+
+    /* ------zigzag----- */
+    .zigzag {
+      width: 400px;
+      height: 400px;
+      position: absolute;
+      right: 3%;
+      top: 3%;
+      background: #c0c0c0;
+    }
+
+    .zigzag::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      height: 15px;
+      /* 鋸齒狀的效果製作 */
+      background: linear-gradient(-45deg, transparent 33.33%, #ff8d8d 33.33%, #ff8d8d 66.66%, transparent 66.66%),
+        linear-gradient(45deg, transparent 33.33%, #ff8d8d 33.33%, #ff8d8d 66.66%, transparent 66.66%);
+      background-size: 30px 60px;
+      transform: rotateX(180deg);
+
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="box">
+    <span class="border"></span>
+    <h1>Css<br><span>Border</span>hover<br>Effects</h1>
+  </div>
+
+  <div class="box1"></div>
+
+  <div class="zigzag"></div>
+
+</body>
+
+</html>
