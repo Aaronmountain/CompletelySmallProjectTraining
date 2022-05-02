@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Calender.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <title>Calender</title>
+</head>
+
+<body>
+
+    <!------ 將Date物件所製作出的函式進行封裝 ------>
+    <div class="Calender">
+        <div id="Calender"></div>
+        <div class="btn">
+            <!-- onclick 中的函式(方法)在 class 類別物件裡面，若要使用物件的方法則要用 物件名稱.物件方法 -->
+            <a class="prevbtn" onclick="cal1.prevbtn();"><i class="fas fa-chevron-up"></i></a>
+            <a class="nextbtn" onclick="cal1.nextbtn();"><i class="fas fa-chevron-down"></i></a>
+        </div>
+    </div>
+
+    <script src="ClassCalender.js"></script>
+
+
+
+    <!------ 利用 JS Date物件製作 ------>
+    <!-- <div class="Calender">
+        <h3 class="year-Month"></h3>
+        <div class="dateList" id="dateList"></div>
+        <div class="btn">
+            <a class="prevbtn"><i class="fas fa-chevron-up"></i></a>
+            <a class="nextbtn"><i class="fas fa-chevron-down"></i></a>
+        </div>
+    </div> -->
+
+    <!-- <script src="Calender.js"></script> -->
+
+</body>
+
+</html>

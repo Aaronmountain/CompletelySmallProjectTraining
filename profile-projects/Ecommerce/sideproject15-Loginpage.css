@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,400;1,300;1,400&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: 'Roboto Condensed', sans-serif;
+  box-sizing: border-box;
+}
+
+.ok{
+    width: 100vmin;
+    height: 100px;
+    position: fixed;
+    right: 0;
+    left: 0;
+    margin: auto;
+    text-align: center;
+    line-height: 3;
+    font-size: 30px;
+    letter-spacing: 20px;
+    color: rgb(240, 247, 202);
+    background-image: linear-gradient(-110deg, #ff5858 0%, #f09819 100%);
+    animation: scaleAnimate 1s ease-out infinite;
+    z-index: 99;
+    border-radius: 20px;
+    display: none;
+}
+@keyframes scaleAnimate {
+    0%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.2);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+.btn{
+    text-decoration: none;
+    display: inline-block;
+    background: #ff523b;
+    color: #fff;
+    border-radius: 30px;
+    padding: 10px 30px;
+    margin: 30px 0;
+    transition: background .5s;
+    line-height: 1.5;
+}
+.btn:hover{
+    background: #563434;
+}
+.cart{
+    width: 30px;
+    height: 30px;
+}
+
+/* ----- Login page  ----- */
+.account_page{
+  padding: 50px 0;
+  background: radial-gradient(#fff,#ffd6d6);
+}
+.account_page .form_container{
+  background: #fff;
+  width: 300px;
+  height: 400px;
+  position: relative;
+  text-align: center;
+  margin: auto;
+  padding: 20px 0;
+  box-shadow: 0 0 20px rgba(0, 0, 0, .3);
+  /* 有兩個表單，一個表單在這個 .form_container 外面等待，故使用 overflow :hidden;*/
+  overflow :hidden;
+}
+.form_btn{
+  display: inline-block;
+}
+.form_container .form_btn span{
+  display: inline-block;
+  width: 100px;
+  padding: 0 10px;
+  cursor: pointer;
+  color: #555;
+  font-weight: bold;
+}
+.form_container form{
+  max-width: 300px;
+  padding: 0 20px;
+  position: absolute;
+  top: 130px;
+  /* 這裡的transition，是由js控制，目的為了更換登入或註冊的表單及，登入註冊底下的底線hr */
+  transition: transform 1s ease;
+}
+.form_container form input{
+  width: 100%;
+  height: 30px;
+  margin: 10px 0;
+  padding: 0 10px;
+  border: 1px solid #ccc;
+}
+.form_container form .btn{
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  margin: 10px 0;
+}
+.form_container form .btn:focus{
+  outline: none;
+}
+.form_container form a{
+  color: #555;
+  text-decoration: none;
+  font-size: 12px;
+}
+#Indicator{
+  width: 100px;
+  border: none;
+  background: #ff523b;
+  height: 3px;
+  margin-top: 8px;
+  transform: translateX(100px);
+  /* 這裡的transition，是由js控制，目的為了更換登入或註冊的表單及，登入註冊底下的底線hr */
+  transition: transform 1s ease ;
+}
+#LoginForm{
+  left: -300px;
+}
+#RegForm{
+  left: 0;
+}
+
+@media screen and (max-width:875px) {
+  .navbar nav ul{
+      position: absolute;
+      top: 70px;
+      left: 0;
+      background: #333;
+      width: 100%;
+      /* js控制maxheight，用overflow: hidden; 來隱藏 maxheight=0 的時候文字還存在的問題 */
+      overflow: hidden;
+      transition: max-height .5s;
+      z-index: 99;
+  }
+  .navbar nav ul li{
+      display: block;
+      margin: 10px 50px 10px 0;
+  }
+  .navbar nav ul li a{
+      color: #fff;
+  }
+  .menu{
+      display: block;
+      cursor: pointer;
+  }
+}
+
+/* RWD width:600px 以下 */
+@media screen and (max-width:650px)
+{
+  .row{
+      text-align: center;
+  }
+  .col-2, .col-3, .col-4{
+      flex-basis: 100%;
+  }
+}

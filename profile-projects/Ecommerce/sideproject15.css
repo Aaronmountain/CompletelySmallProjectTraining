@@ -1,0 +1,818 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,400;1,300;1,400&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: 'Roboto Condensed', sans-serif;
+  box-sizing: border-box;
+}
+/* ----- 共用 ----- */
+.container{
+    max-width: 1300px;
+    margin: auto;
+    padding: 0 25px;
+}
+.small_container{
+    max-width: 1080px;
+    margin: auto;
+    padding: 0 25px;
+}
+.row{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.col-2{
+    flex-basis: 50%;
+    min-width: 300px;
+}
+.col-3{
+    flex-basis: 30%;
+    min-width: 250px;
+    margin-bottom: 30px;
+}
+input[type="number"]{
+    width: 70px;
+    height: 40px;
+    padding: 5px 5px 5px 10px;
+    font-size: 20px;
+    margin-right: 10px;
+    border: 1px solid #ff523b;
+}
+input[type="number"]:focus{
+    outline: none;
+}
+.CartNumber{
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    position: relative;
+    text-align: center;
+}
+.CartNumber>span{
+    position: absolute;
+    top: -20%;
+    left: 40%;
+    width: 28px;
+    height: 28px;
+    background-color: rgb(252, 116, 25);
+    border-radius: 35%;
+    font-size: 22px;
+    line-height: 1.3;
+    visibility: hidden;
+}
+.ok{
+    width: 100vmin;
+    height: 100px;
+    position: fixed;
+    right: 0;
+    left: 0;
+    margin: auto;
+    text-align: center;
+    line-height: 3;
+    font-size: 30px;
+    letter-spacing: 20px;
+    color: rgb(240, 247, 202);
+    background-image: linear-gradient(-110deg, #ff5858 0%, #f09819 100%);
+    animation: scaleAnimate 1s ease-out infinite;
+    z-index: 99;
+    border-radius: 20px;
+    display: none;
+}
+@keyframes scaleAnimate {
+    0%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.2);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+.btn{
+    text-decoration: none;
+    display: inline-block;
+    background: #ff523b;
+    color: #fff;
+    border-radius: 30px;
+    padding: 10px 30px;
+    margin: 30px 0;
+    transition: background .5s;
+    line-height: 1.5;
+}
+.btn:hover{
+    background: #563434;
+}
+.cart{
+    width: 30px;
+    height: 30px;
+}
+
+/* ---- header ---- */
+.header{
+    background: radial-gradient(#fff,#ffd6d6);
+}
+.navbar{
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+.navbar nav{
+    flex: 1;
+    text-align: right;
+}
+.navbar ul{
+    display: inline-block;
+}
+.navbar ul li{
+    display: inline-block;
+    margin-right: 20px;
+}
+.navbar li a{
+    text-decoration: none;
+    color: #555;
+    position: relative;
+}
+.navbar li a::after{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: #fa3920;
+    transition: width .5s ease;
+}
+.navbar li a:hover::after{
+    width: 100%;
+    color: #fa3920;
+}
+.header .row{
+    margin-top: 70px;
+}
+.header .col-2 img{
+    max-width: 100%;
+    padding: 50px 0;
+}
+.header .col-2 h1{
+    font-size: 50px;
+    line-height: 60px;
+    margin: 25px 0;
+}
+
+
+/*------ categories ------*/
+.categories{
+    margin: 70px 0;
+}
+.categories .col-3 img{
+    width: 100%;
+}
+
+/* ----- products ----- */
+.col-4{
+    flex-basis: 25%;
+    padding: 10px;
+    min-width: 200px;
+    margin-bottom: 50px;
+    transition: transform .5s;
+}
+.col-4 img{
+    width: 100%;
+}
+.col-4 p{
+    font-style: 14px;
+}
+.col-4:hover{
+    transform: translateY(-5px);
+}
+.title{
+    text-align: center;
+    margin: 0 auto 80px;
+    position: relative;
+    line-height: 60px;
+    color: #555;
+}
+.title::after{
+    content: '';
+    background: #ff523b;
+    width: 80px;
+    height: 5px;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.col-4 h4{
+    color: #555;
+    font-weight: normal;
+}
+.rating{
+    color: #fa3920;
+}
+
+/*------ offer ------*/
+.offer{
+    background: radial-gradient(#fff,#ffd6d6);
+    margin-top: 80px;
+    padding: 30px 0;
+}
+.offer .offerimg{
+    width: 100%;
+    padding: 50px;
+}
+.offer .col-2 h3{
+    margin: 25px 0;
+}
+.offer .col-2 small{
+    display: block;
+    color: #555;
+}
+
+/*------ testimonial ------*/
+.testimonial{
+    padding-top: 100px;
+}
+.testimonial .col-3{
+    text-align: center;
+    padding: 40px 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+    cursor: pointer;
+    transition: transform .5s;
+}
+.testimonial .col-3:hover{
+    transform: translateY(-15px);
+}
+.testimonial .col-3 img{
+    width: 50px;
+    margin-top: 20px;
+    border-radius: 50%;
+}
+.testimonial .fa-quote-left{
+    color: #ff523b;
+    font-size: 34px;
+}
+.testimonial .col-3 p{
+    font-size: 12px;
+    margin: 12px 0;
+    color: #777;
+}
+.testimonial .col-3 h3{
+    font-weight: 600;
+    color: #555;
+    font-size: 16px;
+}
+
+/*------ brands ------ */
+.brands{
+    margin: 100px auto;
+}
+.brands .col-5{
+    width: 160px;
+}
+.brands .col-5 img{
+    width: 100%;
+    cursor: pointer;
+    /* 圖片便灰階 */
+    filter: grayscale(100%);
+    transition: filter .5s ;
+}
+.brands .col-5 img:hover{
+    filter: grayscale(0);
+}
+
+/*------ footer ------ */
+.footer{
+    background: #000;
+    color: #8a8a8a;
+    font-size: 14px;
+    padding: 60px 0 20px;
+}
+.footer p{
+    color: #8a8;
+}
+.footer h3{
+    color: #fff;
+    margin-bottom: 20px;
+}
+.footer-col-1, .footer-col-2, .footer-col-3, .footer-col-4{
+    min-width: 250px;
+    margin-bottom: 20px;
+}
+.footer-col-1{
+    flex-basis: 30%;
+}
+.footer-col-2{
+    flex: 1;
+    text-align: center;
+}
+.footer-col-2 img{
+    width: 180px;
+    margin-bottom: 20px;
+}
+.footer-col-3, .footer-col-4{
+    flex-basis: 12%;
+    text-align: center;
+}
+.footer .app_logo{
+    margin-top: 20px;
+}
+.footer .app_logo img{
+    width: 140px;
+}
+.footer hr{
+    border: none;
+    background: #b5b5b5;
+    height: 1px;
+    margin: 20px 0;
+}
+.footer .copyright{
+    text-align: center;
+}
+.menu{
+    width: 28px;
+    margin-left: 20px;
+    display: none;
+}
+
+/* --------- productspage ----------- */
+.selectrow{
+    justify-content: space-between;
+    margin: 100px auto 50px;
+}
+.selectrow h2{
+    position: absolute;
+    top: 25%;
+}
+.selectrow button{
+    width: 120px;
+    cursor: pointer;
+    font-size: 35px;
+    padding: 10px;
+    border-radius: 25px;
+    border: 3px solid #c59d5f;
+    text-align: center;
+    color: rgb(80, 41, 5);
+    margin-right: 15px;
+    outline: none;
+}
+.selectrow button:hover{
+    color: #fff;
+    background-color: #c59d5f;
+}
+
+/* ------ single products details -------- */
+.single_products{
+    margin-top: 80px;
+}
+.single_products .col-2{
+    padding: 20px;
+    
+}
+.single_products .runningShoes,.single_products .GrayChinos{
+    line-height: 2.7;
+}
+/* .single_products  */
+.single_products .col-2 img{
+    padding: 0;
+}
+.single_products h4{
+    margin: 20px 0;
+    font-size: 22px;
+    font-weight: bold;
+}
+.single_products select{
+    display: block;
+    padding: 10px;
+    margin-top: 20px;
+}
+.single_products .fa-indent{
+    color: #ff523b;
+    margin-left: 10px;
+    margin-bottom: 25px;
+}
+.single_products .small_img_row{
+    display: flex;
+    justify-content: space-around;
+}
+.single_products .small_img_col{
+    flex-basis: 24%;
+    cursor: pointer;
+}
+.row-2{
+    justify-content: space-between;
+    margin: 100px auto 50px;
+}
+
+
+/* ------ Carts items details */
+.CartItemRow:not(:last-child){
+    border-bottom: 1px solid #444;
+}
+.single_products input[type="button"]{
+    cursor: pointer;
+    width: 35%;
+    height: 10%;
+    text-align: center;
+    display: inline-block;
+    background: #ff523b;
+    color: #fff;
+    border-radius: 30px;
+    padding: 10px 30px;
+    margin: 30px 0;
+    transition: background .5s;
+}
+.single_products input[type="button"]:hover{
+    background: #563434;
+}
+.carts_page{
+    margin: 80px auto;
+}
+.itemsinfo{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid #777;
+}
+.itemsinfo span{
+    padding-bottom: 10px;
+}
+.carts_page .cart-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.Cart-Row{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding: 10px 0;
+    border-bottom: 2px solid #aaa;
+}
+.Cart-Row > div{
+    display: flex;
+    align-items: center;
+}
+.Cart-Row > div .ItemSize{
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    right: 10%;
+    margin: 20px auto 5px;
+    color: rgb(0, 4, 250);
+    font-size: 26px;
+}
+.Cart-Row input{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 20px;
+}
+.Cart-Row img{
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+}
+.Cart-Row .Remove-items-btn{
+    color: #ff523b;
+    font-size: 19px;
+    cursor: pointer;
+    position: absolute;
+    right: -8%;
+}
+.goToShopText h2,.goToShopText a{
+    margin: auto;
+    position: absolute;
+}
+.goToShopText h2{
+    top: 25%;
+    width: 100%;
+    text-align: center;
+    font-size: 60px;
+    color: rgb(253, 94, 94);
+}
+.goToShopText a{
+    width: 100%;
+    top: 50%;
+    text-align: center;
+    text-decoration: none;
+    color: rgb(241, 11, 118);
+}
+.goToShopText span{
+    display: inline-block;
+    font-size: 2.3rem;
+}
+.goToShopText .wave-word {
+    animation: waveAnimate 2s ease-in-out infinite;
+    animation-delay: calc( .1s * var(--wave-word) );
+  }
+@keyframes waveAnimate 
+{
+    0% {
+      transform: translateY(0);
+    }
+    25% {
+      transform: translateY(-24px);
+  
+    }
+    50%{
+      transform: translateY(12px);
+    }
+    75%{
+        transform: translateY(12px);
+      }
+    100%{
+      transform: translateY(12px);
+    }
+}
+
+.tatle-price{
+    display: flex;
+    justify-content: flex-end;
+    padding: 15px;
+    position: relative;
+}
+.tatle-price table{
+    width: 100%;
+    max-width: 350px;
+}
+.carts_page td:last-child{
+    text-align: right;
+    position: relative;
+}
+a.purchase{
+    position: absolute;
+    bottom: -65%;
+}
+
+/* ----- Login page  ----- */
+.account_page{
+    padding: 50px 0;
+    background: radial-gradient(#fff,#ffd6d6);
+}
+.account_page .form_container{
+    background: #fff;
+    width: 300px;
+    height: 400px;
+    position: relative;
+    text-align: center;
+    margin: auto;
+    padding: 20px 0;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .3);
+    /* 有兩個表單，一個表單在這個 .form_container 外面等待，故使用 overflow :hidden;*/
+    overflow :hidden;
+}
+.form_btn{
+    display: inline-block;
+}
+.form_container .form_btn span{
+    display: inline-block;
+    width: 100px;
+    padding: 0 10px;
+    cursor: pointer;
+    color: #555;
+    font-weight: bold;
+}
+.form_container form{
+    max-width: 300px;
+    padding: 0 20px;
+    position: absolute;
+    top: 130px;
+    /* 這裡的transition，是由js控制，目的為了更換登入或註冊的表單及，登入註冊底下的底線hr */
+    transition: transform 1s ease;
+}
+.form_container form input{
+    width: 100%;
+    height: 30px;
+    margin: 10px 0;
+    padding: 0 10px;
+    border: 1px solid #ccc;
+}
+.form_container form .btn{
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    margin: 10px 0;
+}
+.form_container form .btn:focus{
+    outline: none;
+}
+.form_container form a{
+    color: #555;
+    text-decoration: none;
+    font-size: 12px;
+}
+#Indicator{
+    width: 100px;
+    border: none;
+    background: #ff523b;
+    height: 3px;
+    margin-top: 8px;
+    transform: translateX(100px);
+    /* 這裡的transition，是由js控制，目的為了更換登入或註冊的表單及，登入註冊底下的底線hr */
+    transition: transform 1s ease ;
+}
+#LoginForm{
+    left: -300px;
+}
+#RegForm{
+    left: 0;
+}
+
+
+@media screen and (max-width:950px)
+{
+    /*----- 購物車無商品時的文字 ------ */
+    .goToShopText h2{
+        font-size: 44px;
+    }
+    .goToShopText span{
+        font-size: 1.5rem;
+    }
+}
+
+/* ----- RWD width:800px 以下 ----- */
+@media screen and (max-width:875px) {
+    .navbar nav ul{
+        position: absolute;
+        top: 70px;
+        left: 0;
+        background: #333;
+        width: 100%;
+        /* js控制maxheight，用overflow: hidden; 來隱藏 maxheight=0 的時候文字還存在的問題 */
+        overflow: hidden;
+        transition: max-height .5s;
+        z-index: 99;
+    }
+    .navbar nav ul li{
+        display: block;
+        margin: 10px 50px 10px 0;
+    }
+    .navbar nav ul li a{
+        color: #fff;
+    }
+    .menu{
+        display: block;
+        cursor: pointer;
+    }
+
+    /*----- All-products ------*/
+   .selectrow  button{
+        margin-top: 5%;
+    }
+
+    /*----- 購物車中商品資訊 -----*/
+    .Cart-Row .ItemTitle{
+        font-size: .6rem;
+    }
+    .Cart-Row > div .ItemSize{
+        font-size: 15px;
+        bottom: 10%;
+        left: 15%;
+    }
+    .Cart-Row .cart-price, .itemsinfo span:nth-child(3){
+        position: relative;
+        right: 10%;
+    }
+    .Cart-Row .Remove-items-btn{
+        right: -2%;
+    }
+}
+
+/* RWD width:600px 以下 */
+@media screen and (max-width:650px)
+{
+    .row{
+        text-align: center;
+    }
+    .col-2, .col-3, .col-4{
+        flex-basis: 100%;
+    }
+    .single_products .row{
+        text-align: left;
+    }
+    .single_products .col-2{
+        padding: 20px 0;
+    }
+    .single_products h1{
+        font-size: 26px;
+        line-height: 32px;
+    }
+    .cart_info p{
+        display: none;
+    }
+    /* ----- All-products ------ */
+    .selectrow h2{
+        top: 18%;
+        right: 0;
+        left: 0;
+        margin: auto;
+    }
+
+    /*----- 購物車無商品時的文字 ------ */
+    .goToShopText h2{
+        top: 35%;
+        font-size: 1.3rem;
+    }
+    .goToShopText span{
+        font-size: 1.2rem;
+    }
+    .goToShopText a{
+        top: 50%;
+    }
+
+    /*----- 購物車中商品資訊 -----*/
+    .Cart-Row{
+        padding: 65px 0;
+    }
+    .itemsinfo span{
+        flex-basis: 34%;
+    }
+    .itemsinfo>span{
+        position: relative;
+        left: 8%;
+    }
+    .Cart-Row img{
+        position: absolute;
+        top: 5%;
+        left: 5%;
+    }
+    .Cart-Row .ItemTitle{
+        padding-top: 35%;
+        font-size: .6rem;
+        position: relative;
+        left: 10%;
+    }
+    .Cart-Row > div .ItemSize{
+        font-size: 20px;
+        left: 5%;
+    }
+    .Cart-Row .cart-price{
+        position: relative;
+        right: 15%;
+    }
+    .Cart-Row:nth-child(2) .ItemTitle, .Cart-Row:nth-child(3) .ItemTitle{
+        position: absolute;
+        bottom: 30%;
+        left: 7%;
+        font-size: .5rem;
+    }
+    .Cart-Row .carts-input{
+        left: 47%;
+    }
+
+    /*----- 成功加入購訊息 ------*/
+    .ok{
+        line-height: 4;
+        padding-left: 1%;
+        font-size: 1rem;
+        width: 70vmin;
+    }
+}
+
+@media screen and (max-width:490px)
+{
+    /*----- 購物車無商品時的文字 ------ */
+    .goToShopText h2{
+        font-size: 1rem;
+    }
+    .goToShopText span{
+        font-size: .8rem;
+    }
+    .goToShopText a{
+        top: 45%;
+    }
+
+    /*----- 購物車中商品資訊 -----*/
+    .itemsinfo span{
+        flex-basis: 33%;
+    }
+    .Cart-Row .ItemTitle{
+        left: 5%;
+    }
+    .Cart-Row .cart-price{
+        right: 10%;
+    }
+    .Cart-Row .Remove-items-btn{
+        bottom: 15%;
+        right: 8%;
+    }
+    .ok{
+        line-height: 4;
+        padding-left: 2%;
+        font-size: .6rem;
+        width: 70vmin;
+        height: 15vmin;
+    }
+}
+/* 在做CSS的時候，一步一步來總會把CSS的樣式寫死，都用.父層 .col-1234方式來設定，造成共用項目 .col-1234 這些設定都會跑版，導致每次如果用到一樣的CSS名稱的話就要在設定一次，
+在做RWD的時候也是會因為CSS名稱寫死導致CSS失效，
+因而在檢查問題的時候，找了很久，把共用的項目都整理好在提到最方面並註解，方便了解和修改
+*/
