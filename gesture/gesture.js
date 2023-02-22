@@ -18,7 +18,7 @@
       TAP: 1,
       LONG_PRESSED: 2,
       DRAG: 3,
-      PINCH:4,
+      PINCH: 4,
       ROTATE: 5,
       END: 6,
     }
@@ -39,8 +39,8 @@
 
       return matrix.split("(")[1].split(")")[0].split(",").map(Number);
     }
-    static matrixTo(el) {
-      const mArr = this.getMatrixArr(el);
+    static matrixTo(el, matrixArr = null) {
+      const mArr = matrixArr || this.getMatrixArr(el);
       if (!mArr) return;
 
       return {
@@ -58,7 +58,8 @@
     constructor({
       container = null,
       targetDataset = null,
-      defaultTapTime = 250
+      defaultTapTime = 250,
+      defaultPressedTime = 500,
     }) {
       const boundaryReact = container.getBoundingClientRect();
       this.container = container; // 註冊事件的容器元素
@@ -80,6 +81,12 @@
           left: boundaryReact.left,
         },
       };
+
+      this.eventMap =
+        Object.values(Gesture.EVENTS).reduce((acc, curr) => {
+          if (!acc[curr]) acc[curr] = []
+          return acc;
+        }, {})
 
       // get destroy function after init
       this.destroy = this.init();
@@ -103,7 +110,7 @@
     };
 
     handleStart(evt) {
-      let el;
+      let el = this.container;
       if (this.targetDataset && !(el = this.getElement(evt))) {
         return;
       }
@@ -111,7 +118,11 @@
 
       state.startTouches = evt.touches;
       state.now = performance.now();
-      state.matrix = Gesture.getMatrixArr(el);
+      const { matrix, scale, rotate } = Gesture.matrixTo(el);
+      console.log(`🚀 ~ Gesture ~ handleStart ~ matrix:`, matrix);
+      state.matrix = matrix;
+      state.scale = scale;
+      state.rotate = rotate;
 
       if (evt.touches.length === 1) {
         state.startMove.x = evt.touches[0].pageX;
@@ -119,24 +130,19 @@
       } else if (evt.touches.length === 2) {
         state.distance.start =
           this.getLength(this.getVector(evt.touches[0], evt.touches[1]));
-        state.startCenter = this.getCenter(evt.touches[0], evt.touches[1]);
       }
 
       state.status = Gesture.STATE_STATUS.INIT;
-      this.dispatchCustomEvent({
-        target: document,
-        name: Gesture.EVENTS.START,
-        data: {
-          containerElement: this.container,
-          activeElement: el,
-          originEvent: evt,
-          matrix: state.matrix,
-          startPoint: { x: state.startMove.x, y: state.startMove.y },
-        }
+      this.invoke(Gesture.EVENTS.START, {
+        containerElement: this.container,
+        activeElement: el,
+        originEvent: evt,
+        matrix: state.matrix,
+        startPoint: { x: state.startMove.x, y: state.startMove.y },
       })
     }
     handleMove(evt) {
-      let el;
+      let el = this.container;
       if (this.targetDataset && !(el = this.getElement(evt))) {
         return;
       }
@@ -153,7 +159,7 @@
       }
     }
     handleEnd(evt) {
-      let el;
+      let el = this.container;
       if (this.targetDataset && !(el = this.getElement(evt))) {
         return;
       }
@@ -173,42 +179,30 @@
       }
       // if (checkIsOverEdge(el, evt, state)) el.style.transform = "";
       this.state.status = Gesture.STATE_STATUS.NONE;
-      this.dispatchCustomEvent({
-        target: document,
-        name: Gesture.EVENTS.END,
-        data: {
-          containerElement: this.container,
-          activeElement: el,
-          originEvent: evt,
-          matrix: this.state.matrix,
-        }
-      })
+      this.invoke(Gesture.EVENTS.END, {
+        containerElement: this.container,
+        activeElement: el,
+        originEvent: evt,
+        matrix: this.state.matrix,
+      });
     }
 
     // Tap
     tap(el, e) {
-      this.dispatchCustomEvent({
-        target: document,
-        name: Gesture.EVENTS.TAP,
-        data: {
-          containerElement: this.container,
-          activeElement: el,
-          originEvent: e,
-        }
-      })
+      this.invoke(Gesture.EVENTS.TAP, {
+        containerElement: this.container,
+        activeElement: el,
+        originEvent: e,
+      });
     }
 
     // 長按事件
     longPressed(el, e) {
-      this.#dispatchCustomEvent({
-        target: document,
-        name: Gesture.EVENTS.LONG_PRESSED,
-        data: {
-          containerElement: this.container,
-          activeElement: el,
-          originEvent: e,
-        }
-      })
+      this.invoke(Gesture.EVENTS.LONG_PRESSED, {
+        containerElement: this.container,
+        activeElement: el,
+        originEvent: e,
+      });
     }
 
     // 拖曳事件
@@ -218,52 +212,46 @@
       const currentY = e.touches[0].pageY;
       const deltaX = currentX - start.x; // x 軸位移數值
       const deltaY = currentY - start.y; // y 軸位移數值
-      const matrix = Gesture.getMatrixArr(el);
-      matrix[4] += deltaX;
-      matrix[5] += deltaY;
-      state.matrix = matrix;
+      state.matrix[4] += deltaX;
+      state.matrix[5] += deltaY;
 
-      this.dispatchCustomEvent({
-        target: document,
-        name: Gesture.EVENTS.DRAG,
-        data: {
-          containerElement: this.container,
-          activeElement: el,
-          originEvent: e,
-          deltaX,
-          deltaY,
-          oldPoint: { x: state.startMove.x, y: state.startMove.y },
-          newPoint: { x: currentX, y: currentY, },
-          matrix: state.matrix,
-        }
-      })
+      this.invoke(Gesture.EVENTS.DRAG, {
+        containerElement: this.container,
+        activeElement: el,
+        originEvent: e,
+        deltaX,
+        deltaY,
+        oldPoint: { x: state.startMove.x, y: state.startMove.y },
+        newPoint: { x: currentX, y: currentY, },
+        matrix: state.matrix,
+      });
       state.startMove.x = currentX;
       state.startMove.y = currentY;
     };
 
     // 縮放事件
     pinch = _.throttle((el, e, state) => {
+      const oldDistance = state.distance.end;
       state.distance.end =
         this.getLength(this.getVector(e.touches[0], e.touches[1]));
-
       const scale =
         parseFloat((state.distance.end / state.distance.start).toFixed(2));
-      const matrix = Gesture.matrixTo(el).matrix;
-      matrix[0] = scale; // x軸縮放
-      matrix[3] = scale; // y軸縮放
-      state.matrix = matrix;
 
-      this.dispatchCustomEvent({
-        target: document,
-        name: Gesture.EVENTS.PINCH,
-        data: {
-          containerElement: this.container,
-          activeElement: el,
-          originEvent: e,
-          scale,
-          matrix: state.matrix
-        }
-      })
+      if (state.distance.end - oldDistance < 0) {
+        state.matrix[0] -= scale; // x軸縮放
+        state.matrix[3] -= scale; // y軸縮放
+      } else {
+        state.matrix[0] += scale; // x軸縮放
+        state.matrix[3] += scale; // y軸縮放
+      }
+
+      this.invoke(Gesture.EVENTS.PINCH, {
+        containerElement: this.container,
+        activeElement: el,
+        originEvent: e,
+        scale,
+        matrix: state.matrix
+      });
       state.scale = scale;
     }, 50);
 
@@ -271,29 +259,20 @@
     rotate = _.throttle((el, e, state) => {
       const v1 = this.getVector(state.startTouches[0], state.startTouches[1]);
       const v2 = this.getVector(e.touches[0], e.touches[1]);
-      const center = this.getCenter(e.touches[0], e.touches[1]);
-
       const rotate = parseFloat(this.getRotateAngle(v1, v2).toFixed(2));
-      const matrix = Gesture.getMatrixArr(el);
-      matrix[0] *= Math.cos(rotate);
-      matrix[1] = -Math.sin(rotate);
-      matrix[2] = Math.sin(rotate);
-      matrix[3] *= Math.cos(rotate);
-      matrix[4] = center.x;
-      matrix[5] = center.y;
-      state.matrix = matrix;
 
-      this.dispatchCustomEvent({
-        target: document,
-        name: Gesture.EVENTS.ROTATE,
-        data: {
-          containerElement: this.container,
-          activeElement: el,
-          originEvent: e,
-          rotate,
-          matrix: state.matrix,
-        }
-      })
+      state.matrix[0] *= Math.cos(rotate);
+      state.matrix[1] = -Math.sin(rotate);
+      state.matrix[2] = Math.sin(rotate);
+      state.matrix[3] *= Math.cos(rotate);
+
+      this.invoke(Gesture.EVENTS.ROTATE, {
+        containerElement: this.container,
+        activeElement: el,
+        originEvent: e,
+        rotate,
+        matrix: state.matrix,
+      });
       state.rotate = rotate;
     }, 50);
 
@@ -346,13 +325,31 @@
       return noTarget ? null : evt.target;
     }
 
-    /**
-     * target is dispatch target
-     * name is custom event name
-     * data is custom event detail
-    */
-    dispatchCustomEvent({ target, name, data }) {
-      target.dispatchEvent(new CustomEvent(name, { detail: data }));
+    on(eventName, callback) {
+      if (this.eventMap[eventName].length) {
+        this.eventMap[eventName].push(callback);
+      } else {
+        this.eventMap[eventName] = [callback];
+      }
+
+      return () => {
+        this.eventMap[eventName].splice(callbacks.length - 1, 1)
+      }
+    }
+
+    invoke(eventName, eventData) {
+      const callbacks = this.eventMap[eventName] || [];
+
+      if (callbacks.length) {
+        callbacks.forEach(callback => callback(eventData));
+      }
+    }
+
+    cancelAll() {
+      Object.keys(this.eventMap).forEach(key => {
+        this.eventMap[key] = [];
+      })
+      this.destroy();
     };
   }
 
