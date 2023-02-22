@@ -119,7 +119,6 @@
       state.startTouches = evt.touches;
       state.now = performance.now();
       const { matrix, scale, rotate } = Gesture.matrixTo(el);
-      console.log(`🚀 ~ Gesture ~ handleStart ~ matrix:`, matrix);
       state.matrix = matrix;
       state.scale = scale;
       state.rotate = rotate;
