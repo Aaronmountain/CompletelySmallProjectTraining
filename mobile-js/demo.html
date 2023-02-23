@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>matrix</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+  <style>
+    .main {
+      width: 100%;
+      height: 100vh;
+    }
+
+    .box {
+      width: 200px;
+      height: 200px;
+      background: #faf;
+      text-align: center;
+      line-height: 200px;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="main">
+    <section class="box id1"></section>
+    <br />
+    <section class="box id2"></section>
+  </main>
+
+  <!-- <script  src=""></script> -->
+  <script type="module">
+    import MobileGesture from './mobileTouch.js';
+
+    const mobileTouch = new MobileGesture({
+      element: '.main',
+    });
+
+    mobileTouch.on(MobileGesture.EVENTS.TAP, (evt) => {
+      console.log('taping');
+    });
+
+    let tx = 0, ty = 0;
+    mobileTouch.on(MobileGesture.EVENTS.DRAG, (evt) => {
+      evt.preventDefault();
+
+      if (evt.target.dataset.tx) tx = +evt.target.dataset.tx;
+      if (evt.target.dataset.ty) ty = +evt.target.dataset.ty;
+
+      evt.target.setAttribute('data-tx', tx += evt.deltaX);
+      evt.target.setAttribute('data-ty', ty += evt.deltaY);
+      evt.target.style.transform = `translate3d(${tx}px,${ty}px,0)`;
+    });
+
+    mobileTouch.on(MobileGesture.EVENTS.END, (evt) => {
+      console.log('ending');
+    });
+  </script>
+</body>
+
+</html>
