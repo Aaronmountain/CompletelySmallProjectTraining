@@ -60,11 +60,12 @@ class MobileGesture extends CommonMethods {
 
   handleStart(evt) {
     this.state.now = performance.now();
-    this.state.pointers.push(new Point(evt.touches[0].pageX, evt.touches[0].pageY));
+    // @TODO: refactor may should record start touches and add identifyId 
+    this.state.pointers[0] = new Point(evt.touches[0].pageX, evt.touches[0].pageY);
 
     if (evt.touches.length === 2) {
       const touchPointers = this.state.pointers;
-      this.state.pointers.push(new Point(evt.touches[1].pageX, evt.touches[1].pageY))
+      this.state.pointers[1] = new Point(evt.touches[1].pageX, evt.touches[1].pageY);
       this.state.distance[0] =
         touchPointers[0].getSqrtLenByPoint(touchPointers[1]);
       this.state.rotates[0] =
@@ -76,11 +77,11 @@ class MobileGesture extends CommonMethods {
   }
   handleMove(evt) {
     const startPointerLen = this.state.pointers.length;
-    if (startPointerLen === 1) {
-      this.drag(evt);
-    } else if (evt.touches.length === 2 && startPointerLen === 2) {
+    if (evt.touches.length === 2 && startPointerLen === 2) {
       this.pinch(evt);
       this.rotate(evt);
+    } else if (startPointerLen === 1) {
+      this.drag(evt);
     }
   }
 
@@ -122,14 +123,14 @@ class MobileGesture extends CommonMethods {
   pinch(e) {
     const distance = this.state.distance;
     const fPointer =
-      new Point(evt.touches[0].pageX, evt.touches[0].pageY);
+      new Point(e.touches[0].pageX, e.touches[0].pageY);
     const sPointer =
-      new Point(evt.touches[1].pageX, evt.touches[1].pageY);
+      new Point(e.touches[1].pageX, e.touches[1].pageY);
 
     distance[1] = fPointer.getSqrtLenByPoint(sPointer);
     const scale = distance[1] / distance[0];
 
-    e.scale = this.state.scale = scale;
+    e.zoom = this.state.scale = scale;
     e.state = this.state;
     this.fire(MobileGesture.EVENTS.PINCH, e);
     if (scale > 1) this.fire(MobileGesture.EVENTS.PINCH_IN, e);
@@ -142,7 +143,7 @@ class MobileGesture extends CommonMethods {
       sPointer: new Point(e.touches[1].pageX, e.touches[1].pageY),
     }
     const startAngle = this.state.rotates[0];
-    const curAngle = current.fPointer.getDegreeByPoint(current.sPointer)
+    const curAngle = current.fPointer.getDegreeByPoint(current.sPointer);
 
     e.rotate = curAngle - startAngle;
     e.state = this.state;

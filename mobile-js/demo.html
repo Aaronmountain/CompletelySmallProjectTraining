@@ -8,14 +8,19 @@
   <title>matrix</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
   <style>
+    html,
+    body {
+      touch-action: none;
+    }
+
     .main {
       width: 100%;
       height: 100vh;
     }
 
     .box {
-      width: 200px;
-      height: 200px;
+      width: 150px;
+      height: 150px;
       background: #faf;
       text-align: center;
       line-height: 200px;
@@ -30,7 +35,7 @@
     <section class="box id2"></section>
   </main>
 
-  <!-- <script  src=""></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vConsole/3.5.1/vconsole.min.js"></script>
   <script type="module">
     import MobileGesture from './mobileTouch.js';
 
@@ -38,23 +43,33 @@
       element: '.main',
     });
 
+    let tx = 0, ty = 0, s = 1;
+    mobileTouch.on(MobileGesture.EVENTS.START, (evt) => {
+      if (evt.target.dataset.tx) tx = +evt.target.dataset.tx;
+      if (evt.target.dataset.ty) ty = +evt.target.dataset.ty;
+      if (evt.target.dataset.s) s = +evt.target.dataset.s;
+    });
+
     mobileTouch.on(MobileGesture.EVENTS.TAP, (evt) => {
       console.log('taping');
     });
 
-    let tx = 0, ty = 0;
     mobileTouch.on(MobileGesture.EVENTS.DRAG, (evt) => {
       evt.preventDefault();
-
-      if (evt.target.dataset.tx) tx = +evt.target.dataset.tx;
-      if (evt.target.dataset.ty) ty = +evt.target.dataset.ty;
-
       evt.target.setAttribute('data-tx', tx += evt.deltaX);
       evt.target.setAttribute('data-ty', ty += evt.deltaY);
-      evt.target.style.transform = `translate3d(${tx}px,${ty}px,0)`;
+      evt.target.style.transform = `translate3d(${tx}px,${ty}px,0) scale(${s})`;
+    });
+
+    mobileTouch.on(MobileGesture.EVENTS.PINCH, (evt) => {
+      evt.preventDefault();
+      console.log(`🚀 ~ evt:`, getComputedStyle(evt.target, null).transform);
+      evt.target.setAttribute('data-s', evt.zoom);
+      evt.target.style.transform = `translate3d(${tx}px,${ty}px,0) scale(${evt.zoom})`;
     });
 
     mobileTouch.on(MobileGesture.EVENTS.END, (evt) => {
+      tx = ty = 0;
       console.log('ending');
     });
   </script>
