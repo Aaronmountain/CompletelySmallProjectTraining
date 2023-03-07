@@ -60,16 +60,15 @@ class MobileGesture extends CommonMethods {
 
   handleStart(evt) {
     this.state.now = performance.now();
-    // @TODO: refactor may should record start touches and add identifyId 
-    this.state.pointers[0] = new Point(evt.touches[0].pageX, evt.touches[0].pageY);
+    this.#setPointer(evt.touches[0]);
 
     if (evt.touches.length === 2) {
       const touchPointers = this.state.pointers;
-      this.state.pointers[1] = new Point(evt.touches[1].pageX, evt.touches[1].pageY);
+      this.#setPointer(evt.touches[1]);
       this.state.distance[0] =
-        touchPointers[0].getSqrtLenByPoint(touchPointers[1]);
+        touchPointers[0].point.getSqrtLenByPoint(touchPointers[1].point);
       this.state.rotates[0] =
-        touchPointers[0].getDegreeByPoint(touchPointers[1]);
+        touchPointers[0].point.getDegreeByPoint(touchPointers[1].point);
     }
 
     evt.state = this.state;
@@ -98,10 +97,22 @@ class MobileGesture extends CommonMethods {
     this.fire(MobileGesture.EVENTS.END, evt);
   }
 
+  #setPointer(touchEvt) {
+    const pointers = this.state.pointers;
+    const pointer = pointers.find(p => p.id === touchEvt.identifier);
+    const point = new Point(touchEvt.pageX, touchEvt.pageY);
+
+    if (pointer) {
+      pointer.point = point;
+    } else {
+      pointers.push({ id: touchEvt.identifier, point });
+    }
+  }
+
   tap(e) {
-    const cPointer =
+    const cPoint =
       new Point(e.changedTouches[0].pageX, e.changedTouches[0].pageY);
-    const { x, y } = cPointer.subtract(this.state.pointers[0]);
+    const { x, y } = cPoint.subtract(this.state.pointers[0].point);
 
     if (Math.abs(x) < 10 && Math.abs(y) < 10) {
       e.state = this.state;
@@ -110,24 +121,24 @@ class MobileGesture extends CommonMethods {
   }
 
   drag(e) {
-    const cPointer = new Point(e.touches[0].pageX, e.touches[0].pageY);
-    const { x, y } = cPointer.subtract(this.state.pointers[0]);
+    const cPoint = new Point(e.touches[0].pageX, e.touches[0].pageY);
+    const { x, y } = cPoint.subtract(this.state.pointers[0].point);
 
     e.deltaX = x;
     e.deltaY = y;
     e.state = this.state;
     this.fire(MobileGesture.EVENTS.DRAG, e);
-    this.state.pointers[0] = cPointer;
+    this.state.pointers[0].point = cPoint; // directly update value, only one touch;
   };
 
   pinch(e) {
     const distance = this.state.distance;
-    const fPointer =
+    const fPoint =
       new Point(e.touches[0].pageX, e.touches[0].pageY);
-    const sPointer =
+    const sPoint =
       new Point(e.touches[1].pageX, e.touches[1].pageY);
 
-    distance[1] = fPointer.getSqrtLenByPoint(sPointer);
+    distance[1] = fPoint.getSqrtLenByPoint(sPoint);
     const scale = distance[1] / distance[0];
 
     e.zoom = this.state.scale = scale;
@@ -139,13 +150,14 @@ class MobileGesture extends CommonMethods {
 
   rotate(e) {
     const current = {
-      fPointer: new Point(e.touches[0].pageX, e.touches[0].pageY),
-      sPointer: new Point(e.touches[1].pageX, e.touches[1].pageY),
+      fPoint: new Point(e.touches[0].pageX, e.touches[0].pageY),
+      sPoint: new Point(e.touches[1].pageX, e.touches[1].pageY),
     }
     const startAngle = this.state.rotates[0];
-    const curAngle = current.fPointer.getDegreeByPoint(current.sPointer);
+    const curAngle = current.fPoint.getDegreeByPoint(current.sPoint);
+    const deltaAngle = curAngle - startAngle;
 
-    e.rotate = curAngle - startAngle;
+    e.angle = deltaAngle < 0 ? 360 + deltaAngle : deltaAngle % 360;
     e.state = this.state;
     this.fire(MobileGesture.EVENTS.ROTATE, e);
   }

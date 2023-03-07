@@ -30,9 +30,9 @@
 
 <body>
   <main class="main">
-    <section class="box id1"></section>
+    <section class="box id1" data-item></section>
     <br />
-    <section class="box id2"></section>
+    <section class="box id2" data-item></section>
   </main>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vConsole/3.5.1/vconsole.min.js"></script>
@@ -43,11 +43,13 @@
       element: '.main',
     });
 
-    let tx = 0, ty = 0, s = 1;
+    let tx = 0, ty = 0, s = 1, r = 0;
     mobileTouch.on(MobileGesture.EVENTS.START, (evt) => {
       if (evt.target.dataset.tx) tx = +evt.target.dataset.tx;
       if (evt.target.dataset.ty) ty = +evt.target.dataset.ty;
       if (evt.target.dataset.s) s = +evt.target.dataset.s;
+      if (evt.target.dataset.r) r = +evt.target.dataset.r;
+      console.log(tx, ty, s, r);
     });
 
     mobileTouch.on(MobileGesture.EVENTS.TAP, (evt) => {
@@ -56,6 +58,8 @@
 
     mobileTouch.on(MobileGesture.EVENTS.DRAG, (evt) => {
       evt.preventDefault();
+      if (evt.target.dataset.item === undefined) return;
+
       evt.target.setAttribute('data-tx', tx += evt.deltaX);
       evt.target.setAttribute('data-ty', ty += evt.deltaY);
       evt.target.style.transform = `translate3d(${tx}px,${ty}px,0) scale(${s})`;
@@ -63,14 +67,22 @@
 
     mobileTouch.on(MobileGesture.EVENTS.PINCH, (evt) => {
       evt.preventDefault();
-      console.log(`🚀 ~ evt:`, getComputedStyle(evt.target, null).transform);
+      if (evt.target.dataset.item === undefined) return;
+
       evt.target.setAttribute('data-s', evt.zoom);
       evt.target.style.transform = `translate3d(${tx}px,${ty}px,0) scale(${evt.zoom})`;
     });
+    mobileTouch.on(MobileGesture.EVENTS.ROTATE, (evt) => {
+      evt.preventDefault();
+      if (evt.target.dataset.item === undefined) return;
+
+      console.log(`🚀 ~ mobileTouch.on ~ evt:`, evt);
+      evt.target.setAttribute('data-r', evt.angle);
+      evt.target.style.transform = `translate3d(${tx}px,${ty}px,0) scale(${evt.zoom}) rotate(${evt.angle}deg)`;
+    });
 
     mobileTouch.on(MobileGesture.EVENTS.END, (evt) => {
-      tx = ty = 0;
-      console.log('ending');
+      tx = ty = 0, s = 1, r = 0;
     });
   </script>
 </body>
