@@ -1,4 +1,4 @@
-/node_modules
+node_modules
 /build
 Animation_project/JS/fullpage.min.css
 Animation_project/JS/fullpage.min.js
