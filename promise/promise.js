@@ -65,7 +65,7 @@ const as4 = async () => {
     res("123")
   }, 1000));
 }
-const as5 = async () => {
+const af5 = async () => {
   // 相當於 return Promise.reject("123")
   return await new Promise((_res, rej) => setTimeout(() => {
     rej("123")
@@ -78,6 +78,12 @@ const as6 = async () => {
   // 相當於 return Promise.resolve(() => { })
   return await (() => { })
 }
+
+// 在沒有 promise.all ...etc 等，其他普通處理下的情境
+// TODO: 如果 await reject 會怎樣，若沒 try catch 怎樣
+const wait = async () => {
+  const arr = await af5();
+};
 
 const waitAll = async () => {
   try {
